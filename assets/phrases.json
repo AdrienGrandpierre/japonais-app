@@ -1,0 +1,317 @@
+[
+  {
+    "japanese": "こんにちは",
+    "romanji": "Konnichiwa",
+    "french": "Bonjour"
+  },
+  {
+    "japanese": "ありがとう",
+    "romanji": "Arigatou",
+    "french": "Merci"
+  },
+  {
+    "japanese": "おはようございます",
+    "romanji": "Ohayou gozaimasu",
+    "french": "Bonjour (matin)"
+  },
+  {
+    "japanese": "さようなら",
+    "romanji": "Sayounara",
+    "french": "Au revoir"
+  },
+  {
+    "japanese": "はい",
+    "romanji": "Hai",
+    "french": "Oui"
+  },
+  {
+    "japanese": "いいえ",
+    "romanji": "Iie",
+    "french": "Non"
+  },
+  {
+    "japanese": "すみません",
+    "romanji": "Sumimasen",
+    "french": "Excusez-moi"
+  },
+  {
+    "japanese": "お願いします",
+    "romanji": "Onegaishimasu",
+    "french": "S’il vous plaît"
+  },
+  {
+    "japanese": "元気ですか？",
+    "romanji": "Genki desu ka?",
+    "french": "Comment ça va ?"
+  },
+  {
+    "japanese": "わかりません",
+    "romanji": "Wakarimasen",
+    "french": "Je ne comprends pas"
+  },
+  {
+    "japanese": "2人です",
+    "romanji": "Futari desu",
+    "french": "On est deux"
+  },
+  {
+    "japanese": "これください",
+    "romanji": "Kore kudasai",
+    "french": "Je prends ça"
+  },
+  {
+    "japanese": "これ一つください",
+    "romanji": "Kore hitotsu kudasai",
+    "french": "Un de ça"
+  },
+  {
+    "japanese": "同じのください",
+    "romanji": "Onaji no kudasai",
+    "french": "La même chose"
+  },
+  {
+    "japanese": "おすすめは？",
+    "romanji": "Osusume wa ?",
+    "french": "Vous recommandez quoi ?"
+  },
+  {
+    "japanese": "少なめで",
+    "romanji": "Sukuname de",
+    "french": "Petite portion"
+  },
+  {
+    "japanese": "多めで",
+    "romanji": "Ōme de",
+    "french": "Plus de quantité"
+  },
+  {
+    "japanese": "大盛りで",
+    "romanji": "Ōmori de",
+    "french": "Grande portion"
+  },
+  {
+    "japanese": "お水ください",
+    "romanji": "O-mizu kudasai",
+    "french": "De l’eau s’il vous plaît"
+  },
+  {
+    "japanese": "もう一杯ください",
+    "romanji": "Mō ippai kudasai",
+    "french": "Encore un verre"
+  },
+  {
+    "japanese": "お会計お願いします",
+    "romanji": "Okaikei onegaishimasu",
+    "french": "L’addition s’il vous plaît"
+  },
+  {
+    "japanese": "カード使える？",
+    "romanji": "Kādo tsukaeru ?",
+    "french": "Carte possible ?"
+  },
+  {
+    "japanese": "ごちそうさまでした",
+    "romanji": "Gochisousama deshita",
+    "french": "Merci pour le repas"
+  },
+  {
+    "japanese": "もういいです",
+    "romanji": "Mō ii desu",
+    "french": "C’est bon / ça ira"
+  },
+  {
+    "japanese": "まだです",
+    "romanji": "Mada desu",
+    "french": "Pas encore"
+  },
+  {
+    "japanese": "大丈夫です",
+    "romanji": "Daijōbu desu",
+    "french": "Ça va / pas besoin"
+  },
+  {
+    "japanese": "これだけです",
+    "romanji": "Kore dake desu",
+    "french": "C’est tout"
+  },
+  {
+    "japanese": "袋いらないです",
+    "romanji": "Fukuro iranai desu",
+    "french": "Pas de sac"
+  },
+  {
+    "japanese": "温めてください",
+    "romanji": "Atatamete kudasai",
+    "french": "Chauffez s’il vous plaît"
+  },
+  {
+    "japanese": "袋いりますか？",
+    "romanji": "Fukuro irimasu ka ?",
+    "french": "Vous voulez un sac ?"
+  },
+  {
+    "japanese": "温めますか？",
+    "romanji": "Atatamemasu ka ?",
+    "french": "Je chauffe ?"
+  },
+  {
+    "japanese": "とりあえずビール",
+    "romanji": "Toriaezu bīru",
+    "french": "Une bière pour commencer"
+  },
+  {
+    "japanese": "乾杯！",
+    "romanji": "Kanpai !",
+    "french": "Santé !"
+  },
+  {
+    "japanese": "これもお願いします",
+    "romanji": "Kore mo onegaishimasu",
+    "french": "Ça aussi"
+  },
+  {
+    "japanese": "一緒に飲む？",
+    "romanji": "Issho ni nomu ?",
+    "french": "On boit ensemble ?"
+  },
+  {
+    "japanese": "どれおすすめ？",
+    "romanji": "Dore osusume ?",
+    "french": "Tu conseilles lequel ?"
+  },
+  {
+    "japanese": "すみません、駅どこですか？",
+    "romanji": "Sumimasen, eki doko desu ka",
+    "french": "Excusez-moi, la gare est où ?"
+  },
+  {
+    "japanese": "新宿駅どこですか？",
+    "romanji": "Shinjuku eki doko desu ka",
+    "french": "La gare de Shinjuku est où ?"
+  },
+  {
+    "japanese": "この電車、東京行きますか？",
+    "romanji": "Kono densha, Tōkyō ikimasu ka",
+    "french": "Ce train va à Tokyo ?"
+  },
+  {
+    "japanese": "次の電車、何時ですか？",
+    "romanji": "Tsugi no densha, nanji desu ka",
+    "french": "Prochain train à quelle heure ?"
+  },
+  {
+    "japanese": "ここ行きたいです",
+    "romanji": "Koko ikitai desu",
+    "french": "Je veux aller ici"
+  },
+  {
+    "japanese": "右",
+    "romanji": "Migi",
+    "french": "Droite"
+  },
+  {
+    "japanese": "左",
+    "romanji": "Hidari",
+    "french": "Gauche"
+  },
+  {
+    "japanese": "まっすぐ",
+    "romanji": "Massugu",
+    "french": "Tout droit"
+  },
+  {
+    "japanese": "これいくら？",
+    "romanji": "Kore ikura ?",
+    "french": "Ça, ça coûte combien ?"
+  },
+  {
+    "japanese": "他のサイズある？",
+    "romanji": "Hoka no saizu aru ?",
+    "french": "Autre taille ?"
+  },
+  {
+    "japanese": "試着できる？",
+    "romanji": "Shichaku dekiru ?",
+    "french": "Je peux essayer ?"
+  },
+  {
+    "japanese": "これ買う",
+    "romanji": "Kore kau",
+    "french": "Je prends ça"
+  },
+  {
+    "japanese": "見てるだけ",
+    "romanji": "Miteru dake",
+    "french": "Je regarde juste"
+  },
+  {
+    "japanese": "わからない",
+    "romanji": "Wakaranai",
+    "french": "Je comprends pas"
+  },
+  {
+    "japanese": "わかる",
+    "romanji": "Wakaru",
+    "french": "Je vois / je comprends"
+  },
+  {
+    "japanese": "わかりません",
+    "romanji": "Wakarimasen",
+    "french": "Je ne comprends pas (poli)"
+  },
+  {
+    "japanese": "英語わかる？",
+    "romanji": "Eigo wakaru ?",
+    "french": "Tu comprends l’anglais ?"
+  },
+  {
+    "japanese": "トイレどこ？",
+    "romanji": "Toire doko ?",
+    "french": "Toilettes où ?"
+  },
+  {
+    "japanese": "手伝ってくれる？",
+    "romanji": "Tetsudatte kureru ?",
+    "french": "Tu peux m’aider ?"
+  },
+  {
+    "japanese": "ありがとう",
+    "romanji": "Arigatō",
+    "french": "Merci"
+  },
+  {
+    "japanese": "ごめん",
+    "romanji": "Gomen",
+    "french": "Désolé"
+  },
+  {
+    "japanese": "日本語ちょっとだけです",
+    "romanji": "Nihongo chotto dake desu",
+    "french": "Je parle un peu japonais"
+  },
+  {
+    "japanese": "日本語6ヶ月くらい勉強してます",
+    "romanji": "Nihongo rokka-getsu kurai benkyō shitemasu",
+    "french": "J’apprends depuis environ 6 mois"
+  },
+  {
+    "japanese": "魚苦手",
+    "romanji": "Sakana nigate",
+    "french": "Je n’aime pas le poisson"
+  },
+  {
+    "japanese": "魚食べない",
+    "romanji": "Sakana tabenai",
+    "french": "Je ne mange pas de poisson"
+  },
+  {
+    "japanese": "ちょっとだけ",
+    "romanji": "Chotto dake",
+    "french": "Juste un peu"
+  },
+  {
+    "japanese": "無理",
+    "romanji": "Muri",
+    "french": "Impossible / trop dur"
+  }
+]

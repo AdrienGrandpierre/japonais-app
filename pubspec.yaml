@@ -1,0 +1,22 @@
+name: flutter_japonais_app
+description: "Application Flutter de base pour apprendre le japonais."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_tts: ^3.6.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/phrases.json
