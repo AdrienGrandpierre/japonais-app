@@ -30,7 +30,63 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({
+    super.key,
+    required this.phrases,
+    required this.currentRoute,
+  });
+
+  final List<Phrase> phrases;
+  final AppRoute currentRoute;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(color: Colors.blue),
+            child: Text(
+              'Japonais App',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Accueil'),
+            selected: currentRoute == AppRoute.home,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.list),
+            title: const Text('Entraînement'),
+            selected: currentRoute == AppRoute.training,
+            enabled: phrases.isNotEmpty,
+            onTap: currentRoute == AppRoute.training
+                ? () => Navigator.pop(context)
+                : () {
+                    Navigator.pop(context);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => AllPhrasesPage(phrases: phrases),
+                      ),
+                    );
+                  },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 enum QuizMode { mix, frenchToJapanese, japaneseToFrench }
+
+enum AppRoute { home, training }
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,7 +100,7 @@ class _HomePageState extends State<HomePage> {
   final Random _random = Random();
   final FlutterTts _tts = FlutterTts();
   late Phrase _currentPhrase;
-  QuizMode _mode = QuizMode.mix;
+  QuizMode _mode = QuizMode.frenchToJapanese;
   bool _answerVisible = false;
   bool _isFrenchPrompt = true;
   bool _loading = true;
@@ -133,40 +189,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('1mois pour parler japonais')),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Japonais App',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Accueil'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.list),
-              title: const Text('Entraînement'),
-              onTap: _phrases.isEmpty
-                  ? null
-                  : () {
-                      Navigator.pop(context);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              AllPhrasesPage(phrases: _phrases),
-                        ),
-                      );
-                    },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(phrases: _phrases, currentRoute: AppRoute.home),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : SafeArea(
@@ -260,6 +283,57 @@ class _HomePageState extends State<HomePage> {
                                   height: 1.35,
                                 ),
                               ),
+                              if (_currentPhrase.context.isNotEmpty) ...[
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Contexte',
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  _currentPhrase.context,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ],
+                              if (_currentPhrase.dialog.isNotEmpty) ...[
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Dialogue',
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                ),
+                                const SizedBox(height: 8),
+                                ..._currentPhrase.dialog.map(
+                                  (line) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Text(
+                                          line.japanese,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          line.romanji,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          line.french,
+                                          style: const TextStyle(fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                               if (_mode == QuizMode.frenchToJapanese ||
                                   (_mode == QuizMode.mix && _isFrenchPrompt))
                                 Padding(
@@ -307,73 +381,208 @@ class AllPhrasesPage extends StatelessWidget {
     await _tts.speak(text);
   }
 
+  Widget _buildPhraseCard(BuildContext context, Phrase phrase) {
+    return PhraseCard(
+      phrase: phrase,
+      onPlay: () => _speakJapanese(phrase.japanese),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Entraînement')),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: phrases.length,
-        itemBuilder: (context, index) {
-          final phrase = phrases[index];
-          return Card(
-            margin: const EdgeInsets.only(bottom: 12),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            phrase.japanese,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            phrase.romanji,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            phrase.french,
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Container(
-                      width: 56,
-                      decoration: BoxDecoration(
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.primary.withOpacity(0.12),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: IconButton(
-                          onPressed: () => _speakJapanese(phrase.japanese),
-                          icon: const Icon(Icons.volume_up),
-                          splashRadius: 28,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+    final grouped = <String, List<Phrase>>{};
+    for (final phrase in phrases) {
+      final category = phrase.category.isEmpty ? 'Autres' : phrase.category;
+      grouped.putIfAbsent(category, () => []).add(phrase);
+    }
+
+    final phraseList = grouped.entries
+        .expand<Widget>(
+          (entry) => [
+            Text(
+              entry.key,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
-          );
-        },
+            const SizedBox(height: 12),
+            ...entry.value.map((phrase) => _buildPhraseCard(context, phrase)),
+            const SizedBox(height: 20),
+          ],
+        )
+        .toList();
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Entraînement')),
+      drawer: AppDrawer(phrases: phrases, currentRoute: AppRoute.training),
+      body: SafeArea(
+        bottom: true,
+        top: false,
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 64),
+          children: phraseList,
+        ),
+      ),
+    );
+  }
+}
+
+class PhraseCard extends StatefulWidget {
+  const PhraseCard({super.key, required this.phrase, required this.onPlay});
+
+  final Phrase phrase;
+  final VoidCallback onPlay;
+
+  @override
+  State<PhraseCard> createState() => _PhraseCardState();
+}
+
+class _PhraseCardState extends State<PhraseCard> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap:
+            widget.phrase.context.isNotEmpty || widget.phrase.dialog.isNotEmpty
+            ? () => setState(() => _expanded = !_expanded)
+            : null,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.phrase.japanese,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          widget.phrase.romanji,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          widget.phrase.french,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Container(
+                    width: 56,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withOpacity(0.12),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: IconButton(
+                        onPressed: widget.onPlay,
+                        icon: const Icon(Icons.volume_up),
+                        splashRadius: 28,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              if (widget.phrase.context.isNotEmpty ||
+                  widget.phrase.dialog.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                AnimatedCrossFade(
+                  firstChild: const Text(
+                    '...',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  secondChild: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.secondary.withOpacity(0.08),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (widget.phrase.context.isNotEmpty) ...[
+                          Text(
+                            widget.phrase.context,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          if (widget.phrase.dialog.isNotEmpty)
+                            const SizedBox(height: 12),
+                        ],
+                        if (widget.phrase.dialog.isNotEmpty) ...[
+                          Text(
+                            'Dialogue',
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          const SizedBox(height: 8),
+                          ...widget.phrase.dialog.map(
+                            (line) => Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    line.japanese,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    line.romanji,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    line.french,
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                  crossFadeState: _expanded
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: const Duration(milliseconds: 200),
+                ),
+              ],
+            ],
+          ),
+        ),
       ),
     );
   }
