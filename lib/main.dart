@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/phrase_repository.dart';
 import 'models/phrase.dart';
@@ -96,7 +98,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static const _performanceKey = 'phrasePerformance';
+
   final List<Phrase> _phrases = [];
+  final Map<String, int> _phrasePerformance = {};
   final Random _random = Random();
   final FlutterTts _tts = FlutterTts();
   late Phrase _currentPhrase;
@@ -111,13 +116,71 @@ class _HomePageState extends State<HomePage> {
     _loadPhrases();
   }
 
+  String _phraseKey(Phrase phrase) =>
+      '${phrase.japanese}|${phrase.romanji}|${phrase.french}';
+
+  Future<void> _loadPerformance() async {
+    final prefs = await SharedPreferences.getInstance();
+    final stored = prefs.getString(_performanceKey);
+    if (stored == null) {
+      return;
+    }
+
+    try {
+      final decoded = jsonDecode(stored);
+      if (decoded is Map<String, dynamic>) {
+        for (final entry in decoded.entries) {
+          final value = entry.value;
+          if (value is int) {
+            _phrasePerformance[entry.key] = value.clamp(-5, 5);
+          } else if (value is String) {
+            _phrasePerformance[entry.key] =
+                int.tryParse(value)?.clamp(-5, 5) ?? 0;
+          }
+        }
+      }
+    } catch (_) {
+      // Ignore invalid stored data and start fresh.
+    }
+  }
+
+  Future<void> _savePerformance() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_performanceKey, jsonEncode(_phrasePerformance));
+  }
+
+  void _initializePerformance(List<Phrase> loaded) {
+    for (final phrase in loaded) {
+      _phrasePerformance.putIfAbsent(_phraseKey(phrase), () => 0);
+    }
+  }
+
+  Future<void> _resetPerformance() async {
+    _phrasePerformance.clear();
+    _initializePerformance(_phrases);
+    await _savePerformance();
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Scores de quiz réinitialisés.')),
+      );
+      setState(() {});
+    }
+  }
+
   Future<void> _loadPhrases() async {
     final loaded = await PhraseRepository.loadPhrases();
+    await _loadPerformance();
     setState(() {
       _phrases.addAll(loaded);
+      _initializePerformance(loaded);
       _loading = false;
       _pickNewQuestion();
     });
+  }
+
+  int _phraseWeight(Phrase phrase) {
+    final performance = _phrasePerformance[_phraseKey(phrase)] ?? 0;
+    return (5 - performance).clamp(1, 10);
   }
 
   void _pickNewQuestion() {
@@ -125,7 +188,19 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    final next = _phrases[_random.nextInt(_phrases.length)];
+    final weights = _phrases.map(_phraseWeight).toList();
+    final totalWeight = weights.fold<int>(0, (sum, weight) => sum + weight);
+    var target = _random.nextInt(totalWeight);
+    var next = _phrases.first;
+
+    for (var i = 0; i < _phrases.length; i++) {
+      target -= weights[i];
+      if (target < 0) {
+        next = _phrases[i];
+        break;
+      }
+    }
+
     final askFrench = _mode == QuizMode.mix
         ? _random.nextBool()
         : _mode == QuizMode.frenchToJapanese;
@@ -135,6 +210,15 @@ class _HomePageState extends State<HomePage> {
       _answerVisible = false;
       _isFrenchPrompt = askFrench;
     });
+  }
+
+  Future<void> _recordAnswerResult(bool correct) async {
+    final key = _phraseKey(_currentPhrase);
+    final currentScore = _phrasePerformance[key] ?? 0;
+    final updatedScore = (currentScore + (correct ? 1 : -1)).clamp(-5, 5);
+    _phrasePerformance[key] = updatedScore;
+    await _savePerformance();
+    _pickNewQuestion();
   }
 
   void _changeMode(QuizMode mode) {
@@ -188,7 +272,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('1mois pour parler japonais')),
+      appBar: AppBar(
+        title: const Text('1mois pour parler japonais'),
+        actions: [
+          IconButton(
+            tooltip: 'Réinitialiser scores quiz',
+            icon: const Icon(Icons.refresh),
+            onPressed: _resetPerformance,
+          ),
+        ],
+      ),
       drawer: AppDrawer(phrases: _phrases, currentRoute: AppRoute.home),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
@@ -356,10 +449,25 @@ class _HomePageState extends State<HomePage> {
                       child: const Text('Dévoiler'),
                     ),
                     const SizedBox(height: 12),
-                    OutlinedButton(
-                      onPressed: _pickNewQuestion,
-                      child: const Text('Question suivante'),
-                    ),
+                    if (_answerVisible) ...[
+                      Row(
+                        children: [
+                            Expanded(
+                            child: OutlinedButton(
+                              onPressed: () => _recordAnswerResult(false),
+                              child: const Text('Raté'),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () => _recordAnswerResult(true),
+                              child: const Text('Réussi'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -421,7 +529,7 @@ class AllPhrasesPage extends StatelessWidget {
         bottom: true,
         top: false,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 64),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
           children: phraseList,
         ),
       ),
