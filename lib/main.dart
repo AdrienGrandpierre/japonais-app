@@ -686,8 +686,10 @@ class _PhraseCardState extends State<PhraseCard> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [                    _ScoreDot(score: widget.score),
-                    const SizedBox(width: 10),                  Expanded(
+                children: [                    
+                    ScoreBox(score: widget.score),
+                    const SizedBox(width: 12),                 
+                    Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -815,33 +817,35 @@ class _PhraseCardState extends State<PhraseCard> {
   }
 }
 
-class _ScoreDot extends StatelessWidget {
-  const _ScoreDot({required this.score});
+class ScoreBox extends StatelessWidget {
+  const ScoreBox({required this.score});
 
   final int score;
 
-  /// Score goes from -5 (red) to +5 (green).
+  double get normalized => score / 5.0; // -1 → 1
+
   Color get _color {
-    final t = (score + 5) / 10.0; // 0.0 → red, 1.0 → green
+    final t = (normalized + 1) / 2; // 0 → red, 1 → green
     return Color.lerp(Colors.red, Colors.green, t)!;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 14,
-      height: 14,
-      margin: const EdgeInsets.only(top: 4),
+      width: 48,
+      height: 60, // ajuste si besoin
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: _color,
-        boxShadow: [
-          BoxShadow(
-            color: _color.withOpacity(0.5),
-            blurRadius: 4,
-            spreadRadius: 1,
-          ),
-        ],
+        color: _color.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: _color, width: 1.5),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        normalized == 0 ? "0" : normalized.toStringAsFixed(1),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: _color,
+        ),
       ),
     );
   }
