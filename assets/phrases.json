@@ -1,160 +1,358 @@
 ﻿{
-  "Base": [
-    { "japanese": "こんにちは", "romanji": "Konnichiwa", "french": "Bonjour", "context": "Salutation standard pendant la journée." },
-    { "japanese": "おはよう", "romanji": "Ohayō", "french": "Bonjour (matin)", "context": "Salutation utilisée le matin." },
-    { "japanese": "じゃあね", "romanji": "Jā ne", "french": "À plus / salut", "context": "Formule familière pour dire au revoir à un ami." },
-    { "japanese": "さようなら", "romanji": "Sayōnara", "french": "Au revoir", "context": "Au revoir plus formel ou définitif." },
-    { "japanese": "はい", "romanji": "Hai", "french": "Oui", "context": "Réponse affirmative simple." },
-    { "japanese": "いいえ", "romanji": "Iie", "french": "Non", "context": "Réponse négative simple." },
-    { "japanese": "ありがとう", "romanji": "Arigatō", "french": "Merci", "context": "Remerciement courant entre amis." },
-    { "japanese": "すみません", "romanji": "Sumimasen", "french": "Excusez-moi / désolé", "context": "Attirer l’attention ou s’excuser." },
-    { "japanese": "ごめん", "romanji": "Gomen", "french": "Désolé", "context": "Excuse informelle." },
-    { "japanese": "お願いします", "romanji": "Onegai shimasu", "french": "S’il vous plaît", "context": "Demande polie." },
-    {
-      "japanese": "元気ですか？",
-      "romanji": "Genki desu ka?",
-      "french": "Comment ça va ?",
-      "context": "Demander des nouvelles.",
-      "dialog": [
+    "Base": [
         {
-          "japanese": "元気ですか？",
-          "romanji": "Genki desu ka?",
-          "french": "Comment ça va ?"
+            "japanese": "こんにちは",
+            "romanji": "Konnichiwa",
+            "french": "Bonjour",
+            "context": "Salutation standard pendant la journée."
         },
         {
-          "japanese": "はい、元気です！",
-          "romanji": "Hai, genki desu!",
-          "french": "Oui, ça va bien !"
-        }
-      ]
-    }
-  ],
-
-  "Restaurant": [
-    { "japanese": "2人です", "romanji": "Futari desu", "french": "Pour deux personnes", "context": "Arrivée au restaurant." },
-    { "japanese": "おすすめは？", "romanji": "Osusume wa?", "french": "Vous conseillez quoi ?", "context": "Demander une recommandation.",
-      "dialog": [
-        {
-          "japanese": "おすすめは？",
-          "romanji": "Osusume wa?",
-          "french": "Vous conseillez quoi ?"
+            "japanese": "おはよう",
+            "romanji": "Ohayō",
+            "french": "Bonjour (matin)",
+            "context": "Salutation utilisée le matin."
         },
         {
-          "japanese": "ラーメンが人気です",
-          "romanji": "Rāmen ga ninki desu",
-          "french": "Le ramen est populaire."
-        }
-      ]
-    },
-    { "japanese": "これください", "romanji": "Kore kudasai", "french": "Je prends ça", "context": "Commande simple." },
-    { "japanese": "これ一つください", "romanji": "Kore hitotsu kudasai", "french": "Un de ça s’il vous plaît", "context": "Commander une unité." },
-    { "japanese": "同じのください", "romanji": "Onaji no kudasai", "french": "La même chose", "context": "Commander comme quelqu’un." },
-    { "japanese": "これもお願いします", "romanji": "Kore mo onegai shimasu", "french": "Ça aussi s’il vous plaît", "context": "Ajouter un article." },
-    { "japanese": "小盛りで", "romanji": "Komori de", "french": "Petite portion", "context": "Moins de nourriture." },
-    { "japanese": "大盛りで", "romanji": "Ōmori de", "french": "Grande portion", "context": "Plus de nourriture." },
-    { "japanese": "水ください", "romanji": "Mizu kudasai", "french": "De l’eau", "context": "Demander de l’eau." },
-    { "japanese": "お会計お願いします", "romanji": "Okaikei onegai shimasu", "french": "L’addition s’il vous plaît", "context": "Payer." }
-  ],
-
-  "Shopping": [
-    { "japanese": "これいくら？", "romanji": "Kore ikura?", "french": "Ça coûte combien ?", "context": "Demander prix.",
-      "dialog": [
-        {
-          "japanese": "これいくら？",
-          "romanji": "Kore ikura?",
-          "french": "Ça coûte combien ?"
+            "japanese": "じゃあね",
+            "romanji": "Jā ne",
+            "french": "À plus / salut",
+            "context": "Formule familière pour dire au revoir à un ami."
         },
         {
-          "japanese": "1000円です",
-          "romanji": "Sen en desu",
-          "french": "C’est 1000 yens."
-        }
-      ]
-    },
-    { "japanese": "試着できる？", "romanji": "Shichaku dekiru?", "french": "Je peux essayer ?", "context": "Essayage.",
-      "dialog": [
-        {
-          "japanese": "試着できる？",
-          "romanji": "Shichaku dekiru?",
-          "french": "Je peux essayer ?"
+            "japanese": "さようなら",
+            "romanji": "Sayōnara",
+            "french": "Au revoir",
+            "context": "Au revoir plus formel ou définitif."
         },
         {
-          "japanese": "はい、どうぞ",
-          "romanji": "Hai, dōzo",
-          "french": "Oui, allez-y."
-        }
-      ]
-    },
-    { "japanese": "見てるだけ", "romanji": "Miteru dake", "french": "Je regarde", "context": "Browsing." }
-  ],
-
-  "Transport": [
-    { "japanese": "すみません、駅どこ？", "romanji": "Sumimasen, eki doko?", "french": "La gare est où ?", "context": "Demande direction.",
-      "dialog": [
-        {
-          "japanese": "すみません、駅どこ？",
-          "romanji": "Sumimasen, eki doko?",
-          "french": "La gare est où ?"
+            "japanese": "はい",
+            "romanji": "Hai",
+            "french": "Oui",
+            "context": "Réponse affirmative simple."
         },
         {
-          "japanese": "あそこです",
-          "romanji": "Asoko desu",
-          "french": "Là-bas."
-        }
-      ]
-    },
-    { "japanese": "次の電車いつ？", "romanji": "Tsugi no densha itsu?", "french": "Prochain train ?", "context": "Horaire.",
-      "dialog": [
-        {
-          "japanese": "次の電車いつ？",
-          "romanji": "Tsugi no densha itsu?",
-          "french": "Prochain train ?"
+            "japanese": "いいえ",
+            "romanji": "Iie",
+            "french": "Non",
+            "context": "Réponse négative simple."
         },
         {
-          "japanese": "5分後です",
-          "romanji": "Go-fun go desu",
-          "french": "Dans 5 minutes."
-        }
-      ]
-    },
-    { "japanese": "まっすぐ", "romanji": "Massugu", "french": "Tout droit", "context": "Direction." }
-  ],
-
-  "Social": [
-    { "japanese": "飲む？", "romanji": "Nomu?", "french": "On boit ?", "context": "Invitation.",
-      "dialog": [
-        {
-          "japanese": "飲む？",
-          "romanji": "Nomu?",
-          "french": "On boit ?"
+            "japanese": "ありがとう",
+            "romanji": "Arigatō",
+            "french": "Merci",
+            "context": "Remerciement courant entre amis."
         },
         {
-          "japanese": "いいね！",
-          "romanji": "Ii ne!",
-          "french": "Bonne idée !"
-        }
-      ]
-    },
-    { "japanese": "英語わかる？", "romanji": "Eigo wakaru?", "french": "Tu parles anglais ?", "context": "Communication.",
-      "dialog": [
-        {
-          "japanese": "英語わかる？",
-          "romanji": "Eigo wakaru?",
-          "french": "Tu parles anglais ?"
+            "japanese": "すみません",
+            "romanji": "Sumimasen",
+            "french": "Excusez-moi / désolé",
+            "context": "Attirer l’attention ou s’excuser."
         },
         {
-          "japanese": "少しだけわかります",
-          "romanji": "Sukoshi dake wakarimasu",
-          "french": "Je comprends un peu."
+            "japanese": "ごめん",
+            "romanji": "Gomen",
+            "french": "Désolé",
+            "context": "Excuse informelle."
+        },
+        {
+            "japanese": "お願いします",
+            "romanji": "Onegai shimasu",
+            "french": "S’il vous plaît",
+            "context": "Demande polie."
+        },
+        {
+            "japanese": "元気ですか？",
+            "romanji": "Genki desu ka?",
+            "french": "Comment ça va ?",
+            "context": "Demander des nouvelles.",
+            "dialog": [
+                {
+                    "japanese": "元気ですか？",
+                    "romanji": "Genki desu ka?",
+                    "french": "Comment ça va ?"
+                },
+                {
+                    "japanese": "はい、元気です！",
+                    "romanji": "Hai, genki desu!",
+                    "french": "Oui, ça va bien !"
+                }
+            ]
         }
-      ]
-    },
-    { "japanese": "トイレどこ？", "romanji": "Toire doko?", "french": "Toilettes où ?", "context": "Demande toilettes." }
-  ],
-
-  "Compréhension": [
-    { "japanese": "わかる", "romanji": "Wakaru", "french": "Je comprends", "context": "Compréhension." },
-    { "japanese": "わからない", "romanji": "Wakaranai", "french": "Je comprends pas", "context": "Non compréhension." },
-    { "japanese": "無理", "romanji": "Muri", "french": "Impossible", "context": "Refus." }
-  ]
+    ],
+    "Restaurant": [
+        {
+            "japanese": "2人です",
+            "romanji": "Futari desu",
+            "french": "Pour deux personnes",
+            "context": "Arrivée au restaurant."
+        },
+        {
+            "japanese": "おすすめは？",
+            "romanji": "Osusume wa?",
+            "french": "Vous conseillez quoi ?",
+            "context": "Demander une recommandation.",
+            "dialog": [
+                {
+                    "japanese": "おすすめは？",
+                    "romanji": "Osusume wa?",
+                    "french": "Vous conseillez quoi ?"
+                },
+                {
+                    "japanese": "ラーメンが人気です",
+                    "romanji": "Rāmen ga ninki desu",
+                    "french": "Le ramen est populaire."
+                }
+            ]
+        },
+        {
+            "japanese": "これください",
+            "romanji": "Kore kudasai",
+            "french": "Je prends ça",
+            "context": "Commande simple."
+        },
+        {
+            "japanese": "これ一つください",
+            "romanji": "Kore hitotsu kudasai",
+            "french": "Un de ça s’il vous plaît",
+            "context": "Commander une unité."
+        },
+        {
+            "japanese": "同じのください",
+            "romanji": "Onaji no kudasai",
+            "french": "La même chose",
+            "context": "Commander comme quelqu’un."
+        },
+        {
+            "japanese": "これもお願いします",
+            "romanji": "Kore mo onegai shimasu",
+            "french": "Ça aussi s’il vous plaît",
+            "context": "Ajouter un article."
+        },
+        {
+            "japanese": "小盛りでください",
+            "romanji": "Komori de kudasai",
+            "french": "Petite portion, s’il vous plaît",
+            "context": "Demander une plus petite portion au moment de commander."
+        },
+        {
+            "japanese": "大盛りでください",
+            "romanji": "Ōmori de kudasai",
+            "french": "Grande portion, s’il vous plaît",
+            "context": "Demander une plus grande portion au moment de commander."
+        },
+        {
+            "japanese": "水ください",
+            "romanji": "Mizu kudasai",
+            "french": "De l’eau, s’il vous plaît",
+            "context": "Demander de l’eau."
+        },
+        {
+            "japanese": "お会計お願いします",
+            "romanji": "Okaikei onegai shimasu",
+            "french": "L’addition s’il vous plaît",
+            "context": "Payer."
+        }
+    ],
+    "Konbini": [
+        {
+            "japanese": "袋いりますか？",
+            "romanji": "Fukuro irimasu ka?",
+            "french": "Vous avez besoin d’un sac ?",
+            "context": "Question typique du personnel à la caisse.",
+            "dialog": [
+                {
+                    "japanese": "袋いりますか？",
+                    "romanji": "Fukuro irimasu ka?",
+                    "french": "Vous avez besoin d’un sac ?"
+                },
+                {
+                    "japanese": "はい、お願いします",
+                    "romanji": "Hai, onegai shimasu",
+                    "french": "Oui, s’il vous plaît"
+                }
+            ]
+        },
+        {
+            "japanese": "袋はいりません",
+            "romanji": "Fukuro wa irimasen",
+            "french": "Je n’ai pas besoin de sac",
+            "context": "Répondre poliment au konbini quand on ne veut pas de sac."
+        },
+        {
+            "japanese": "レシートいりますか？",
+            "romanji": "Reshīto irimasu ka?",
+            "french": "Vous voulez le ticket ?",
+            "context": "Question fréquente après paiement.",
+            "dialog": [
+                {
+                    "japanese": "レシートいりますか？",
+                    "romanji": "Reshīto irimasu ka?",
+                    "french": "Vous voulez le ticket ?"
+                },
+                {
+                    "japanese": "いいえ、大丈夫です",
+                    "romanji": "Iie, daijōbu desu",
+                    "french": "Non merci, ça va"
+                }
+            ]
+        },
+        {
+            "japanese": "これ、温めてください",
+            "romanji": "Kore, atatamete kudasai",
+            "french": "Pouvez-vous réchauffer ça ?",
+            "context": "Demander à réchauffer un plat."
+        }
+    ],
+    "Shopping": [
+        {
+            "japanese": "これいくら？",
+            "romanji": "Kore ikura?",
+            "french": "Ça coûte combien ?",
+            "context": "Demander prix.",
+            "dialog": [
+                {
+                    "japanese": "これいくら？",
+                    "romanji": "Kore ikura?",
+                    "french": "Ça coûte combien ?"
+                },
+                {
+                    "japanese": "1000円です",
+                    "romanji": "Sen en desu",
+                    "french": "C’est 1000 yens."
+                }
+            ]
+        },
+        {
+            "japanese": "試着できる？",
+            "romanji": "Shichaku dekiru?",
+            "french": "Je peux essayer ?",
+            "context": "Essayage.",
+            "dialog": [
+                {
+                    "japanese": "試着できる？",
+                    "romanji": "Shichaku dekiru?",
+                    "french": "Je peux essayer ?"
+                },
+                {
+                    "japanese": "はい、どうぞ",
+                    "romanji": "Hai, dōzo",
+                    "french": "Oui, allez-y."
+                }
+            ]
+        },
+        {
+            "japanese": "見てるだけ",
+            "romanji": "Miteru dake",
+            "french": "Je regarde",
+            "context": "Browsing."
+        }
+    ],
+    "Transport": [
+        {
+            "japanese": "すみません、駅どこ？",
+            "romanji": "Sumimasen, eki doko?",
+            "french": "La gare est où ?",
+            "context": "Demande direction.",
+            "dialog": [
+                {
+                    "japanese": "すみません、駅どこ？",
+                    "romanji": "Sumimasen, eki doko?",
+                    "french": "La gare est où ?"
+                },
+                {
+                    "japanese": "あそこです",
+                    "romanji": "Asoko desu",
+                    "french": "Là-bas."
+                }
+            ]
+        },
+        {
+            "japanese": "次の電車いつ？",
+            "romanji": "Tsugi no densha itsu?",
+            "french": "Quand est le prochain train ?",
+            "context": "Horaire.",
+            "dialog": [
+                {
+                    "japanese": "次の電車いつ？",
+                    "romanji": "Tsugi no densha itsu?",
+                    "french": "Quand est le prochain train ?"
+                },
+                {
+                    "japanese": "5分後です",
+                    "romanji": "Go-fun go desu",
+                    "french": "Dans 5 minutes."
+                }
+            ]
+        },
+        {
+            "japanese": "まっすぐ",
+            "romanji": "Massugu",
+            "french": "Tout droit",
+            "context": "Direction."
+        }
+    ],
+    "Social": [
+        {
+            "japanese": "一緒に飲む？",
+            "romanji": "Issho ni nomu?",
+            "french": "On boit ensemble ?",
+            "context": "Invitation à boire ensemble dans un izakaya.",
+            "dialog": [
+                {
+                    "japanese": "一緒に飲む？",
+                    "romanji": "Issho ni nomu?",
+                    "french": "On boit ensemble ?"
+                },
+                {
+                    "japanese": "いいね！",
+                    "romanji": "Ii ne!",
+                    "french": "Bonne idée !"
+                }
+            ]
+        },
+        {
+            "japanese": "英語わかる？",
+            "romanji": "Eigo wakaru?",
+            "french": "Tu comprends l’anglais ?",
+            "context": "Demander si la personne comprend l’anglais.",
+            "dialog": [
+                {
+                    "japanese": "英語わかる？",
+                    "romanji": "Eigo wakaru?",
+                    "french": "Tu comprends l’anglais ?"
+                },
+                {
+                    "japanese": "少しだけわかります",
+                    "romanji": "Sukoshi dake wakarimasu",
+                    "french": "Je comprends un peu."
+                }
+            ]
+        },
+        {
+            "japanese": "トイレどこ？",
+            "romanji": "Toire doko?",
+            "french": "Toilettes où ?",
+            "context": "Demande toilettes."
+        }
+    ],
+    "Compréhension": [
+        {
+            "japanese": "わかる",
+            "romanji": "Wakaru",
+            "french": "Je comprends",
+            "context": "Compréhension."
+        },
+        {
+            "japanese": "わからない",
+            "romanji": "Wakaranai",
+            "french": "Je comprends pas",
+            "context": "Non compréhension."
+        },
+        {
+            "japanese": "無理",
+            "romanji": "Muri",
+            "french": "Impossible",
+            "context": "Refus."
+        }
+    ]
 }

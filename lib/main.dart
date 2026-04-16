@@ -37,37 +37,129 @@ class AppDrawer extends StatelessWidget {
     super.key,
     required this.phrases,
     required this.currentRoute,
+    this.phrasePerformance = const {},
   });
 
   final List<Phrase> phrases;
   final AppRoute currentRoute;
+  final Map<String, int> phrasePerformance;
+
+  Widget _drawerItem({
+    required BuildContext context,
+    required IconData icon,
+    required String label,
+    required bool isActive,
+    required bool enabled,
+    required VoidCallback onTap,
+  }) {
+    final color = Theme.of(context).colorScheme.primary;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: Material(
+        color: isActive ? color.withOpacity(0.12) : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: enabled ? onTap : null,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  color: isActive
+                      ? color
+                      : enabled
+                          ? null
+                          : Colors.grey,
+                  size: 22,
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight:
+                          isActive ? FontWeight.bold : FontWeight.normal,
+                      color: isActive
+                          ? color
+                          : enabled
+                              ? null
+                              : Colors.grey,
+                    ),
+                  ),
+                ),
+                if (isActive)
+                  Container(
+                    width: 6,
+                    height: 6,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: Colors.blue),
-            child: Text(
-              'Japonais App',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Japonais App',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    currentRoute == AppRoute.home
+                        ? 'Accueil'
+                        : 'Entraînement',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.75),
+                      fontSize: 13,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Accueil'),
-            selected: currentRoute == AppRoute.home,
+          _drawerItem(
+            context: context,
+            icon: Icons.home,
+            label: 'Accueil',
+            isActive: currentRoute == AppRoute.home,
+            enabled: true,
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).popUntil((route) => route.isFirst);
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.list),
-            title: const Text('Entraînement'),
-            selected: currentRoute == AppRoute.training,
+          _drawerItem(
+            context: context,
+            icon: Icons.menu_book,
+            label: 'Entraînement',
+            isActive: currentRoute == AppRoute.training,
             enabled: phrases.isNotEmpty,
             onTap: currentRoute == AppRoute.training
                 ? () => Navigator.pop(context)
@@ -75,7 +167,10 @@ class AppDrawer extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => AllPhrasesPage(phrases: phrases),
+                        builder: (context) => AllPhrasesPage(
+                          phrases: phrases,
+                          phrasePerformance: phrasePerformance,
+                        ),
                       ),
                     );
                   },
@@ -282,7 +377,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: AppDrawer(phrases: _phrases, currentRoute: AppRoute.home),
+      drawer: AppDrawer(
+        phrases: _phrases,
+        currentRoute: AppRoute.home,
+        phrasePerformance: _phrasePerformance,
+      ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : SafeArea(
@@ -477,10 +576,18 @@ class _HomePageState extends State<HomePage> {
 }
 
 class AllPhrasesPage extends StatelessWidget {
-  AllPhrasesPage({super.key, required this.phrases});
+  AllPhrasesPage({
+    super.key,
+    required this.phrases,
+    this.phrasePerformance = const {},
+  });
 
   final List<Phrase> phrases;
+  final Map<String, int> phrasePerformance;
   final FlutterTts _tts = FlutterTts();
+
+  String _phraseKey(Phrase phrase) =>
+      '${phrase.japanese}|${phrase.romanji}|${phrase.french}';
 
   Future<void> _speakJapanese(String text) async {
     await _tts.setLanguage('ja-JP');
@@ -490,8 +597,10 @@ class AllPhrasesPage extends StatelessWidget {
   }
 
   Widget _buildPhraseCard(BuildContext context, Phrase phrase) {
+    final score = phrasePerformance[_phraseKey(phrase)] ?? 0;
     return PhraseCard(
       phrase: phrase,
+      score: score,
       onPlay: () => _speakJapanese(phrase.japanese),
     );
   }
@@ -524,7 +633,11 @@ class AllPhrasesPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Entraînement')),
-      drawer: AppDrawer(phrases: phrases, currentRoute: AppRoute.training),
+      drawer: AppDrawer(
+        phrases: phrases,
+        currentRoute: AppRoute.training,
+        phrasePerformance: phrasePerformance,
+      ),
       body: SafeArea(
         bottom: true,
         top: false,
@@ -538,10 +651,16 @@ class AllPhrasesPage extends StatelessWidget {
 }
 
 class PhraseCard extends StatefulWidget {
-  const PhraseCard({super.key, required this.phrase, required this.onPlay});
+  const PhraseCard({
+    super.key,
+    required this.phrase,
+    required this.onPlay,
+    this.score = 0,
+  });
 
   final Phrase phrase;
   final VoidCallback onPlay;
+  final int score;
 
   @override
   State<PhraseCard> createState() => _PhraseCardState();
@@ -567,8 +686,8 @@ class _PhraseCardState extends State<PhraseCard> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
+                children: [                    _ScoreDot(score: widget.score),
+                    const SizedBox(width: 10),                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -691,6 +810,38 @@ class _PhraseCardState extends State<PhraseCard> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ScoreDot extends StatelessWidget {
+  const _ScoreDot({required this.score});
+
+  final int score;
+
+  /// Score goes from -5 (red) to +5 (green).
+  Color get _color {
+    final t = (score + 5) / 10.0; // 0.0 → red, 1.0 → green
+    return Color.lerp(Colors.red, Colors.green, t)!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 14,
+      height: 14,
+      margin: const EdgeInsets.only(top: 4),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: _color,
+        boxShadow: [
+          BoxShadow(
+            color: _color.withOpacity(0.5),
+            blurRadius: 4,
+            spreadRadius: 1,
+          ),
+        ],
       ),
     );
   }
