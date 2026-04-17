@@ -151,6 +151,24 @@
             "romanji": "Okaikei onegai shimasu",
             "french": "L’addition s’il vous plaît",
             "context": "Payer."
+        },
+        {
+            "japanese": "ごちそうさまでした",
+            "romanji": "Gochisōsama deshita",
+            "french": "Merci pour le repas",
+            "context": "Formule de politesse dite à la fin du repas."
+        },
+        {
+            "japanese": "まだです",
+            "romanji": "Mada desu",
+            "french": "Pas encore",
+            "context": "Répondre qu'on n'a pas encore terminé ou qu'on n'a pas encore commandé."
+        },
+        {
+            "japanese": "魚食べない",
+            "romanji": "Sakana tabenai",
+            "french": "Je ne mange pas de poisson",
+            "context": "Indiquer une restriction alimentaire au restaurant."
         }
     ],
     "Konbini": [
@@ -171,6 +189,12 @@
                     "french": "Oui, s’il vous plaît"
                 }
             ]
+        },
+        {
+            "japanese": "これだけです",
+            "romanji": "Kore dake desu",
+            "french": "C'est tout",
+            "context": "Indiquer qu'on ne veut rien de plus lors d'une commande."
         },
         {
             "japanese": "袋はいりません",
@@ -289,9 +313,39 @@
             "romanji": "Massugu",
             "french": "Tout droit",
             "context": "Direction."
+        },
+        {
+            "japanese": "この電車、東京行きますか？",
+            "romanji": "Kono densha, Tōkyō ikimasu ka?",
+            "french": "Ce train va à Tokyo ?",
+            "context": "Vérifier la destination d'un train.",
+            "dialog": [
+                {
+                    "japanese": "この電車、東京行きますか？",
+                    "romanji": "Kono densha, Tōkyō ikimasu ka?",
+                    "french": "Ce train va à Tokyo ?"
+                },
+                {
+                    "japanese": "はい、東京行きです",
+                    "romanji": "Hai, Tōkyō yuki desu",
+                    "french": "Oui, il va à Tokyo."
+                }
+            ]
+        },
+        {
+            "japanese": "右",
+            "romanji": "Migi",
+            "french": "Droite",
+            "context": "Direction."
+        },
+        {
+            "japanese": "左",
+            "romanji": "Hidari",
+            "french": "Gauche",
+            "context": "Direction."
         }
     ],
-    "Social": [
+    "Izakaya": [
         {
             "japanese": "一緒に飲む？",
             "romanji": "Issho ni nomu?",
@@ -310,6 +364,44 @@
                 }
             ]
         },
+        {
+            "japanese": "どれおすすめ？",
+            "romanji": "Dore osusume?",
+            "french": "Tu conseilles lequel ?",
+            "context": "Demander une recommandation parmi plusieurs choix."
+        },
+        {
+            "japanese": "乾杯！",
+            "romanji": "Kanpai!",
+            "french": "Santé !",
+            "context": "Toast avant de boire, rituel incontournable à l'izakaya."
+        },
+        {
+            "japanese": "何飲む？",
+            "romanji": "Nani nomu?",
+            "french": "Tu bois quoi ?",
+            "context": "Demander à quelqu'un ce qu'il veut boire.",
+            "dialog": [
+                {
+                    "japanese": "何飲む？",
+                    "romanji": "Nani nomu?",
+                    "french": "Tu bois quoi ?"
+                },
+                {
+                    "japanese": "ビールにする",
+                    "romanji": "Bīru ni suru",
+                    "french": "Je vais prendre une bière."
+                }
+            ]
+        },
+        {
+            "japanese": "もう一杯ください",
+            "romanji": "Mō ippai kudasai",
+            "french": "Encore un verre",
+            "context": "Demander un autre verre à l'izakaya."
+        }
+    ],
+    "Social": [
         {
             "japanese": "英語わかる？",
             "romanji": "Eigo wakaru?",
@@ -333,6 +425,18 @@
             "romanji": "Toire doko?",
             "french": "Toilettes où ?",
             "context": "Demande toilettes."
+        },
+        {
+            "japanese": "日本語6ヶ月くらい勉強してます",
+            "romanji": "Nihongo rokka-getsu kurai benkyō shitemasu",
+            "french": "J'apprends le japonais depuis 6 mois",
+            "context": "Se présenter et parler de son apprentissage du japonais."
+        },
+        {
+            "japanese": "日本語ちょっとだけです",
+            "romanji": "Nihongo chotto dake desu",
+            "french": "Je parle un peu japonais",
+            "context": "Indiquer modestement son niveau de japonais."
         }
     ],
     "Compréhension": [
