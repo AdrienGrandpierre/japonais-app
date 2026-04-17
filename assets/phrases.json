@@ -89,13 +89,13 @@
         {
             "japanese": "おすすめは？",
             "romanji": "Osusume wa?",
-            "french": "Vous conseillez quoi ?",
+            "french": "Quelle est votre recommandation ?",
             "context": "Demander une recommandation.",
             "dialog": [
                 {
                     "japanese": "おすすめは？",
                     "romanji": "Osusume wa?",
-                    "french": "Vous conseillez quoi ?"
+                    "french": "Quelle est votre recommandation ?"
                 },
                 {
                     "japanese": "ラーメンが人気です",
@@ -193,7 +193,7 @@
         {
             "japanese": "これだけです",
             "romanji": "Kore dake desu",
-            "french": "C'est tout",
+            "french": "Juste ça",
             "context": "Indiquer qu'on ne veut rien de plus lors d'une commande."
         },
         {
@@ -220,6 +220,41 @@
                 }
             ]
         },
+        {
+    "japanese": "お箸いりますか？",
+    "romanji": "Ohashi irimasu ka?",
+    "french": "Vous voulez des baguettes ?",
+    "context": "Question fréquente au konbini ou restaurant pour proposer des baguettes ou couverts.",
+    "dialog": [
+        {
+            "japanese": "お箸いりますか？",
+            "romanji": "Ohashi irimasu ka?",
+            "french": "Vous voulez des baguettes ?"
+        },
+        {
+            "japanese": "はい、お願いします",
+            "romanji": "Hai, onegaishimasu",
+            "french": "Oui, s’il vous plaît"
+        }
+    ]
+},{
+    "japanese": "温めますか？",
+    "romanji": "Atatamemasu ka?",
+    "french": "Vous voulez que je chauffe ?",
+    "context": "Question très fréquente au konbini pour les plats préparés.",
+    "dialog": [
+        {
+            "japanese": "温めますか？",
+            "romanji": "Atatamemasu ka?",
+            "french": "Vous voulez que je chauffe ?"
+        },
+        {
+            "japanese": "はい、お願いします",
+            "romanji": "Hai, onegaishimasu",
+            "french": "Oui, s’il vous plaît"
+        }
+    ]
+},
         {
             "japanese": "これ、温めてください",
             "romanji": "Kore, atatamete kudasai",
@@ -267,8 +302,8 @@
         {
             "japanese": "見てるだけ",
             "romanji": "Miteru dake",
-            "french": "Je regarde",
-            "context": "Browsing."
+            "french": "Je regarde juste",
+            "context": "Indiquer qu’on regarde simplement (sans intention d’acheter)."
         }
     ],
     "Transport": [
@@ -421,6 +456,60 @@
             ]
         },
         {
+    "japanese": "28歳",
+    "romanji": "Nijūhassai",
+    "french": "J’ai 28 ans",
+    "context": "Se présenter de manière casual dans un izakaya pendant une discussion.",
+    "dialog": [
+        {
+            "japanese": "何歳？",
+            "romanji": "Nansai?",
+            "french": "T’as quel âge ?"
+        },
+        {
+            "japanese": "28歳",
+            "romanji": "Nijūhassai",
+            "french": "28 ans"
+        }
+    ]
+},
+{
+    "japanese": "フランス人",
+    "romanji": "Furansujin",
+    "french": "Je suis Français",
+    "context": "Dire sa nationalité dans une discussion casual en izakaya.",
+    "dialog": [
+        {
+            "japanese": "どこ出身？",
+            "romanji": "Doko shusshin?",
+            "french": "Tu viens d’où ?"
+        },
+        {
+            "japanese": "フランス人",
+            "romanji": "Furansujin",
+            "french": "Français"
+        }
+    ]
+},
+{
+    "japanese": "パリに住んでる",
+    "romanji": "Pari ni sunderu",
+    "french": "J’habite à Paris",
+    "context": "Parler de sa ville de manière casual en izakaya.",
+    "dialog": [
+        {
+            "japanese": "どこ住んでるの？",
+            "romanji": "Doko sunderu no?",
+            "french": "Tu habites où ?"
+        },
+        {
+            "japanese": "パリに住んでる",
+            "romanji": "Pari ni sunderu",
+            "french": "J’habite à Paris"
+        }
+    ]
+},
+        {
             "japanese": "トイレどこ？",
             "romanji": "Toire doko?",
             "french": "Toilettes où ?",
@@ -435,7 +524,7 @@
         {
             "japanese": "日本語ちょっとだけです",
             "romanji": "Nihongo chotto dake desu",
-            "french": "Je parle un peu japonais",
+            "french": "Je connais un peu japonais",
             "context": "Indiquer modestement son niveau de japonais."
         }
     ],
