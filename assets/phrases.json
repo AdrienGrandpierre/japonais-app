@@ -225,13 +225,13 @@
         {
             "japanese": "試着できる？",
             "romanji": "Shichaku dekiru?",
-            "french": "Je peux essayer ?",
+            "french": "Je peux essayer ? (vêtements)",
             "context": "Essayage.",
             "dialog": [
                 {
                     "japanese": "試着できる？",
                     "romanji": "Shichaku dekiru?",
-                    "french": "Je peux essayer ?"
+                    "french": "Je peux essayer ? (vêtements)"
                 },
                 {
                     "japanese": "はい、どうぞ",
@@ -251,13 +251,13 @@
         {
             "japanese": "すみません、駅どこ？",
             "romanji": "Sumimasen, eki doko?",
-            "french": "La gare est où ?",
+            "french": "Excusez-moi, où est la gare ?",
             "context": "Demande direction.",
             "dialog": [
                 {
                     "japanese": "すみません、駅どこ？",
                     "romanji": "Sumimasen, eki doko?",
-                    "french": "La gare est où ?"
+                    "french": "Excusez-moi, où est la gare ?"
                 },
                 {
                     "japanese": "あそこです",
@@ -267,14 +267,14 @@
             ]
         },
         {
-            "japanese": "次の電車いつ？",
-            "romanji": "Tsugi no densha itsu?",
+            "japanese": "次の電車、何時ですか？",
+            "romanji": "Tsugi no densha, nanji desu ka ?",
             "french": "Quand est le prochain train ?",
-            "context": "Horaire.",
+            "context": "Demander l'horaire du prochain train.",
             "dialog": [
                 {
-                    "japanese": "次の電車いつ？",
-                    "romanji": "Tsugi no densha itsu?",
+                    "japanese": "次の電車、何時ですか？",
+                    "romanji": "Tsugi no densha, nanji desu ka ?",
                     "french": "Quand est le prochain train ?"
                 },
                 {
