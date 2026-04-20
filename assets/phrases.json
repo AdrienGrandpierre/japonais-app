@@ -37,6 +37,12 @@
             "context": "Réponse négative simple."
         },
         {
+            "japanese": "ありません",
+            "romanji": "Arimasen",
+            "french": "Non, il n'y en a pas",
+            "context": "Réponse négative à une question du type \"est-ce que vous avez...\"."
+        },
+        {
             "japanese": "ありがとう",
             "romanji": "Arigatō",
             "french": "Merci",
@@ -169,6 +175,24 @@
             "romanji": "Sakana tabenai",
             "french": "Je ne mange pas de poisson",
             "context": "Indiquer une restriction alimentaire au restaurant."
+        },
+        {
+            "japanese": "英語のメニューはありますか？",
+            "romanji": "Eigo no menyū wa arimasu ka?",
+            "french": "Il y a un menu en anglais ?",
+            "context": "Demander un menu en anglais au restaurant.",
+            "dialog": [
+                {
+                    "japanese": "英語のメニューはありますか？",
+                    "romanji": "Eigo no menyū wa arimasu ka?",
+                    "french": "Il y a un menu en anglais ?"
+                },
+                {
+                    "japanese": "はい、こちらです",
+                    "romanji": "Hai, kochira desu",
+                    "french": "Oui, voilà."
+                }
+            ]
         }
     ],
     "Konbini": [
@@ -221,40 +245,41 @@
             ]
         },
         {
-    "japanese": "お箸いりますか？",
-    "romanji": "Ohashi irimasu ka?",
-    "french": "Vous voulez des baguettes ?",
-    "context": "Question fréquente au konbini ou restaurant pour proposer des baguettes ou couverts.",
-    "dialog": [
-        {
             "japanese": "お箸いりますか？",
             "romanji": "Ohashi irimasu ka?",
-            "french": "Vous voulez des baguettes ?"
+            "french": "Vous voulez des baguettes ?",
+            "context": "Question fréquente au konbini ou restaurant pour proposer des baguettes ou couverts.",
+            "dialog": [
+                {
+                    "japanese": "お箸いりますか？",
+                    "romanji": "Ohashi irimasu ka?",
+                    "french": "Vous voulez des baguettes ?"
+                },
+                {
+                    "japanese": "はい、お願いします",
+                    "romanji": "Hai, onegaishimasu",
+                    "french": "Oui, s’il vous plaît"
+                }
+            ]
         },
-        {
-            "japanese": "はい、お願いします",
-            "romanji": "Hai, onegaishimasu",
-            "french": "Oui, s’il vous plaît"
-        }
-    ]
-},{
-    "japanese": "温めますか？",
-    "romanji": "Atatamemasu ka?",
-    "french": "Vous voulez que je chauffe ?",
-    "context": "Question très fréquente au konbini pour les plats préparés.",
-    "dialog": [
         {
             "japanese": "温めますか？",
             "romanji": "Atatamemasu ka?",
-            "french": "Vous voulez que je chauffe ?"
+            "french": "Vous voulez que je chauffe ?",
+            "context": "Question très fréquente au konbini pour les plats préparés.",
+            "dialog": [
+                {
+                    "japanese": "温めますか？",
+                    "romanji": "Atatamemasu ka?",
+                    "french": "Vous voulez que je chauffe ?"
+                },
+                {
+                    "japanese": "はい、お願いします",
+                    "romanji": "Hai, onegaishimasu",
+                    "french": "Oui, s’il vous plaît"
+                }
+            ]
         },
-        {
-            "japanese": "はい、お願いします",
-            "romanji": "Hai, onegaishimasu",
-            "french": "Oui, s’il vous plaît"
-        }
-    ]
-},
         {
             "japanese": "これ、温めてください",
             "romanji": "Kore, atatamete kudasai",
@@ -304,6 +329,24 @@
             "romanji": "Miteru dake",
             "french": "Je regarde juste",
             "context": "Indiquer qu’on regarde simplement (sans intention d’acheter)."
+        },
+        {
+            "japanese": "他のサイズはありますか？",
+            "romanji": "Hoka no saizu wa arimasu ka?",
+            "french": "Vous avez une autre taille ?",
+            "context": "Demander si un vêtement existe dans une autre taille.",
+            "dialog": [
+                {
+                    "japanese": "他のサイズはありますか？",
+                    "romanji": "Hoka no saizu wa arimasu ka?",
+                    "french": "Vous avez une autre taille ?"
+                },
+                {
+                    "japanese": "ありません。",
+                    "romanji": "Arimasen.",
+                    "french": "Non, il n'y en a pas."
+                }
+            ]
         }
     ],
     "Transport": [
@@ -456,64 +499,76 @@
             ]
         },
         {
-    "japanese": "28歳",
-    "romanji": "Nijūhassai",
-    "french": "J’ai 28 ans",
-    "context": "Se présenter de manière casual dans un izakaya pendant une discussion.",
-    "dialog": [
-        {
-            "japanese": "何歳？",
-            "romanji": "Nansai?",
-            "french": "T’as quel âge ?"
-        },
-        {
             "japanese": "28歳",
             "romanji": "Nijūhassai",
-            "french": "28 ans"
-        }
-    ]
-},
-{
-    "japanese": "フランス人",
-    "romanji": "Furansujin",
-    "french": "Je suis Français",
-    "context": "Dire sa nationalité dans une discussion casual en izakaya.",
-    "dialog": [
-        {
-            "japanese": "どこ出身？",
-            "romanji": "Doko shusshin?",
-            "french": "Tu viens d’où ?"
+            "french": "J’ai 28 ans",
+            "context": "Se présenter de manière casual dans un izakaya pendant une discussion.",
+            "dialog": [
+                {
+                    "japanese": "何歳？",
+                    "romanji": "Nansai?",
+                    "french": "T’as quel âge ?"
+                },
+                {
+                    "japanese": "28歳",
+                    "romanji": "Nijūhassai",
+                    "french": "28 ans"
+                }
+            ]
         },
         {
             "japanese": "フランス人",
             "romanji": "Furansujin",
-            "french": "Français"
-        }
-    ]
-},
-{
-    "japanese": "パリに住んでる",
-    "romanji": "Pari ni sunderu",
-    "french": "J’habite à Paris",
-    "context": "Parler de sa ville de manière casual en izakaya.",
-    "dialog": [
-        {
-            "japanese": "どこ住んでるの？",
-            "romanji": "Doko sunderu no?",
-            "french": "Tu habites où ?"
+            "french": "Je suis Français",
+            "context": "Dire sa nationalité dans une discussion casual en izakaya.",
+            "dialog": [
+                {
+                    "japanese": "どこ出身？",
+                    "romanji": "Doko shusshin?",
+                    "french": "Tu viens d’où ?"
+                },
+                {
+                    "japanese": "フランス人",
+                    "romanji": "Furansujin",
+                    "french": "Français"
+                }
+            ]
         },
         {
             "japanese": "パリに住んでる",
             "romanji": "Pari ni sunderu",
-            "french": "J’habite à Paris"
-        }
-    ]
-},
+            "french": "J’habite à Paris",
+            "context": "Parler de sa ville de manière casual en izakaya.",
+            "dialog": [
+                {
+                    "japanese": "どこ住んでるの？",
+                    "romanji": "Doko sunderu no?",
+                    "french": "Tu habites où ?"
+                },
+                {
+                    "japanese": "パリに住んでる",
+                    "romanji": "Pari ni sunderu",
+                    "french": "J'habite à Paris"
+                }
+            ]
+        },
         {
             "japanese": "トイレどこ？",
             "romanji": "Toire doko?",
             "french": "Toilettes où ?",
             "context": "Demande toilettes."
+        },
+        {
+            "japanese": "トイレありますか？",
+            "romanji": "Toire arimasu ka?",
+            "french": "Il y a des toilettes ?",
+            "context": "Demander s'il y a des toilettes (formule plus polie)."
+        },
+        {
+            "japanese": "Wi-Fiありませんか？",
+            "romanji": "Waifai arimasen ka?",
+            "french": "Il n'y aurait pas du wifi ?",
+            "context": "Demander poliment s'il y a du wifi disponible."
         },
         {
             "japanese": "日本語6ヶ月くらい勉強してます",

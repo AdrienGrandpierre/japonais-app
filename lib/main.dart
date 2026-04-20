@@ -575,8 +575,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class AllPhrasesPage extends StatelessWidget {
-  AllPhrasesPage({
+class AllPhrasesPage extends StatefulWidget {
+  const AllPhrasesPage({
     super.key,
     required this.phrases,
     this.phrasePerformance = const {},
@@ -584,7 +584,21 @@ class AllPhrasesPage extends StatelessWidget {
 
   final List<Phrase> phrases;
   final Map<String, int> phrasePerformance;
+
+  @override
+  State<AllPhrasesPage> createState() => _AllPhrasesPageState();
+}
+
+class _AllPhrasesPageState extends State<AllPhrasesPage> {
   final FlutterTts _tts = FlutterTts();
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   String _phraseKey(Phrase phrase) =>
       '${phrase.japanese}|${phrase.romanji}|${phrase.french}';
@@ -597,7 +611,7 @@ class AllPhrasesPage extends StatelessWidget {
   }
 
   Widget _buildPhraseCard(BuildContext context, Phrase phrase) {
-    final score = phrasePerformance[_phraseKey(phrase)] ?? 0;
+    final score = widget.phrasePerformance[_phraseKey(phrase)] ?? 0;
     return PhraseCard(
       phrase: phrase,
       score: score,
@@ -607,8 +621,15 @@ class AllPhrasesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final query = _searchQuery.toLowerCase().trim();
+    final filteredPhrases = query.isEmpty
+        ? widget.phrases
+        : widget.phrases
+            .where((p) => p.french.toLowerCase().contains(query))
+            .toList();
+
     final grouped = <String, List<Phrase>>{};
-    for (final phrase in phrases) {
+    for (final phrase in filteredPhrases) {
       final category = phrase.category.isEmpty ? 'Autres' : phrase.category;
       grouped.putIfAbsent(category, () => []).add(phrase);
     }
@@ -634,16 +655,53 @@ class AllPhrasesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Entraînement')),
       drawer: AppDrawer(
-        phrases: phrases,
+        phrases: widget.phrases,
         currentRoute: AppRoute.training,
-        phrasePerformance: phrasePerformance,
+        phrasePerformance: widget.phrasePerformance,
       ),
       body: SafeArea(
         bottom: true,
         top: false,
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-          children: phraseList,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+              child: TextField(
+                controller: _searchController,
+                onChanged: (value) => setState(() => _searchQuery = value),
+                decoration: InputDecoration(
+                  hintText: 'Rechercher une traduction...',
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _searchQuery.isNotEmpty
+                      ? IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _searchQuery = '');
+                          },
+                        )
+                      : null,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                ),
+              ),
+            ),
+            Expanded(
+              child: phraseList.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'Aucune phrase trouvée.',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    )
+                  : ListView(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                      children: phraseList,
+                    ),
+            ),
+          ],
         ),
       ),
     );
