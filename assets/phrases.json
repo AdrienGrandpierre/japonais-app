@@ -39,7 +39,7 @@
         {
             "japanese": "ありません",
             "romanji": "Arimasen",
-            "french": "Non, il n'y en a pas",
+            "french": "Il n'y en a pas",
             "context": "Réponse négative à une question du type \"est-ce que vous avez...\"."
         },
         {
@@ -177,15 +177,15 @@
             "context": "Indiquer une restriction alimentaire au restaurant."
         },
         {
-            "japanese": "英語のメニューはありますか？",
-            "romanji": "Eigo no menyū wa arimasu ka?",
-            "french": "Il y a un menu en anglais ?",
+            "japanese": "英語のメニューありますか？",
+            "romanji": "Eigo no menyū arimasu ka?",
+            "french": "Est-ce qu'il y a un menu en anglais ?",
             "context": "Demander un menu en anglais au restaurant.",
             "dialog": [
                 {
-                    "japanese": "英語のメニューはありますか？",
-                    "romanji": "Eigo no menyū wa arimasu ka?",
-                    "french": "Il y a un menu en anglais ?"
+                    "japanese": "英語のメニューありますか？",
+                    "romanji": "Eigo no menyū arimasu ka?",
+                    "french": "Est-ce qu'il y a un menu en anglais ?"
                 },
                 {
                     "japanese": "はい、こちらです",
@@ -221,8 +221,8 @@
             "context": "Indiquer qu'on ne veut rien de plus lors d'une commande."
         },
         {
-            "japanese": "袋はいりません",
-            "romanji": "Fukuro wa irimasen",
+            "japanese": "袋いりません",
+            "romanji": "Fukuro irimasen",
             "french": "Je n’ai pas besoin de sac",
             "context": "Répondre poliment au konbini quand on ne veut pas de sac."
         },
@@ -331,20 +331,20 @@
             "context": "Indiquer qu’on regarde simplement (sans intention d’acheter)."
         },
         {
-            "japanese": "他のサイズはありますか？",
-            "romanji": "Hoka no saizu wa arimasu ka?",
+            "japanese": "他のサイズありますか？",
+            "romanji": "Hoka no saizu arimasu ka?",
             "french": "Vous avez une autre taille ?",
             "context": "Demander si un vêtement existe dans une autre taille.",
             "dialog": [
                 {
-                    "japanese": "他のサイズはありますか？",
-                    "romanji": "Hoka no saizu wa arimasu ka?",
+                    "japanese": "他のサイズありますか？",
+                    "romanji": "Hoka no saizu arimasu ka?",
                     "french": "Vous avez une autre taille ?"
                 },
                 {
                     "japanese": "ありません。",
                     "romanji": "Arimasen.",
-                    "french": "Non, il n'y en a pas."
+                    "french": "Il n'y en a pas."
                 }
             ]
         }
@@ -499,20 +499,20 @@
             ]
         },
         {
-            "japanese": "28歳",
-            "romanji": "Nijūhassai",
-            "french": "J’ai 28 ans",
+            "japanese": "27歳",
+            "romanji": "Nijūnanasai",
+            "french": "J'ai 27 ans",
             "context": "Se présenter de manière casual dans un izakaya pendant une discussion.",
             "dialog": [
                 {
                     "japanese": "何歳？",
                     "romanji": "Nansai?",
-                    "french": "T’as quel âge ?"
+                    "french": "T'as quel âge ?"
                 },
                 {
-                    "japanese": "28歳",
-                    "romanji": "Nijūhassai",
-                    "french": "28 ans"
+                    "japanese": "27歳",
+                    "romanji": "Nijūnanasai",
+                    "french": "27 ans"
                 }
             ]
         },
@@ -561,13 +561,13 @@
         {
             "japanese": "トイレありますか？",
             "romanji": "Toire arimasu ka?",
-            "french": "Il y a des toilettes ?",
+            "french": "Est-ce qu'il y a des toilettes ?",
             "context": "Demander s'il y a des toilettes (formule plus polie)."
         },
         {
             "japanese": "Wi-Fiありませんか？",
             "romanji": "Waifai arimasen ka?",
-            "french": "Il n'y aurait pas du wifi ?",
+            "french": "Est-ce qu'il y aurait du wifi ?",
             "context": "Demander poliment s'il y a du wifi disponible."
         },
         {

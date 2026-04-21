@@ -56,7 +56,7 @@ class AppDrawer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Material(
-        color: isActive ? color.withOpacity(0.12) : Colors.transparent,
+        color: isActive ? color.withValues(alpha: 0.12) : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
@@ -70,8 +70,8 @@ class AppDrawer extends StatelessWidget {
                   color: isActive
                       ? color
                       : enabled
-                          ? null
-                          : Colors.grey,
+                      ? null
+                      : Colors.grey,
                   size: 22,
                 ),
                 const SizedBox(width: 16),
@@ -80,13 +80,14 @@ class AppDrawer extends StatelessWidget {
                     label,
                     style: TextStyle(
                       fontSize: 15,
-                      fontWeight:
-                          isActive ? FontWeight.bold : FontWeight.normal,
+                      fontWeight: isActive
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                       color: isActive
                           ? color
                           : enabled
-                              ? null
-                              : Colors.grey,
+                          ? null
+                          : Colors.grey,
                     ),
                   ),
                 ),
@@ -132,11 +133,9 @@ class AppDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    currentRoute == AppRoute.home
-                        ? 'Accueil'
-                        : 'Entraînement',
+                    currentRoute == AppRoute.home ? 'Accueil' : 'Entraînement',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.75),
+                      color: Colors.white.withValues(alpha: 0.75),
                       fontSize: 13,
                     ),
                   ),
@@ -456,7 +455,7 @@ class _HomePageState extends State<HomePage> {
                       Card(
                         color: Theme.of(
                           context,
-                        ).colorScheme.secondary.withOpacity(0.12),
+                        ).colorScheme.secondary.withValues(alpha: 0.12),
                         elevation: 1,
                         child: Padding(
                           padding: const EdgeInsets.all(16),
@@ -551,7 +550,7 @@ class _HomePageState extends State<HomePage> {
                     if (_answerVisible) ...[
                       Row(
                         children: [
-                            Expanded(
+                          Expanded(
                             child: OutlinedButton(
                               onPressed: () => _recordAnswerResult(false),
                               child: const Text('Raté'),
@@ -625,8 +624,8 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
     final filteredPhrases = query.isEmpty
         ? widget.phrases
         : widget.phrases
-            .where((p) => p.french.toLowerCase().contains(query))
-            .toList();
+              .where((p) => p.french.toLowerCase().contains(query))
+              .toList();
 
     final grouped = <String, List<Phrase>>{};
     for (final phrase in filteredPhrases) {
@@ -744,10 +743,10 @@ class _PhraseCardState extends State<PhraseCard> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [                    
-                    ScoreBox(score: widget.score),
-                    const SizedBox(width: 12),                 
-                    Expanded(
+                children: [
+                  ScoreBox(score: widget.score),
+                  const SizedBox(width: 12),
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -781,7 +780,7 @@ class _PhraseCardState extends State<PhraseCard> {
                     decoration: BoxDecoration(
                       color: Theme.of(
                         context,
-                      ).colorScheme.primary.withOpacity(0.12),
+                      ).colorScheme.primary.withValues(alpha: 0.12),
                       shape: BoxShape.circle,
                     ),
                     child: Center(
@@ -806,7 +805,7 @@ class _PhraseCardState extends State<PhraseCard> {
                     decoration: BoxDecoration(
                       color: Theme.of(
                         context,
-                      ).colorScheme.secondary.withOpacity(0.08),
+                      ).colorScheme.secondary.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     padding: const EdgeInsets.all(12),
@@ -876,7 +875,7 @@ class _PhraseCardState extends State<PhraseCard> {
 }
 
 class ScoreBox extends StatelessWidget {
-  const ScoreBox({required this.score});
+  const ScoreBox({super.key, required this.score});
 
   final int score;
 
@@ -893,17 +892,14 @@ class ScoreBox extends StatelessWidget {
       width: 48,
       height: 60, // ajuste si besoin
       decoration: BoxDecoration(
-        color: _color.withOpacity(0.15),
+        color: _color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: _color, width: 1.5),
       ),
       alignment: Alignment.center,
       child: Text(
         normalized == 0 ? "0" : normalized.toStringAsFixed(1),
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: _color,
-        ),
+        style: TextStyle(fontWeight: FontWeight.bold, color: _color),
       ),
     );
   }
