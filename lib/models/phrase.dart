@@ -35,6 +35,8 @@ class Phrase {
     this.dialog = const [],
   });
 
+  String get key => '$japanese|$romanji|$french';
+
   factory Phrase.fromJson(Map<String, dynamic> json, {String category = ''}) {
     final dialogJson = json['dialog'] ?? json['dialogs'];
     final dialogLines = <PhraseDialogLine>[];

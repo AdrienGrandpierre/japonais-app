@@ -26,23 +26,30 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
   String _searchQuery = '';
 
   @override
+  void initState() {
+    super.initState();
+    _initTts();
+  }
+
+  @override
   void dispose() {
+    _tts.stop();
     _searchController.dispose();
     super.dispose();
   }
 
-  String _phraseKey(Phrase phrase) =>
-      '${phrase.japanese}|${phrase.romanji}|${phrase.french}';
-
-  Future<void> _speakJapanese(String text) async {
+  Future<void> _initTts() async {
     await _tts.setLanguage('ja-JP');
     await _tts.setSpeechRate(0.45);
     await _tts.setPitch(1.0);
+  }
+
+  Future<void> _speakJapanese(String text) async {
     await _tts.speak(text);
   }
 
   Widget _buildPhraseCard(BuildContext context, Phrase phrase) {
-    final score = widget.phrasePerformance[_phraseKey(phrase)] ?? 0;
+    final score = widget.phrasePerformance[phrase.key] ?? 0;
     return PhraseCard(
       phrase: phrase,
       score: score,

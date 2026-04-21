@@ -5,10 +5,10 @@ class ScoreBox extends StatelessWidget {
 
   final int score;
 
-  double get normalized => score / 5.0;
+  double get _normalized => score / 5.0;
 
   Color get _color {
-    final t = (normalized + 1) / 2;
+    final t = (_normalized + 1) / 2;
     return Color.lerp(Colors.red, Colors.green, t)!;
   }
 
@@ -24,7 +24,7 @@ class ScoreBox extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Text(
-        normalized == 0 ? "0" : normalized.toStringAsFixed(1),
+        _normalized == 0 ? "0" : _normalized.toStringAsFixed(1),
         style: TextStyle(fontWeight: FontWeight.bold, color: _color),
       ),
     );

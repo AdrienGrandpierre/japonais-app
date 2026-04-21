@@ -34,11 +34,21 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _initTts();
     _loadPhrases();
   }
 
-  String _phraseKey(Phrase phrase) =>
-      '${phrase.japanese}|${phrase.romanji}|${phrase.french}';
+  @override
+  void dispose() {
+    _tts.stop();
+    super.dispose();
+  }
+
+  Future<void> _initTts() async {
+    await _tts.setLanguage('ja-JP');
+    await _tts.setSpeechRate(0.45);
+    await _tts.setPitch(1.0);
+  }
 
   Future<void> _loadPerformance() async {
     final prefs = await SharedPreferences.getInstance();
@@ -72,7 +82,7 @@ class _HomePageState extends State<HomePage> {
 
   void _initializePerformance(List<Phrase> loaded) {
     for (final phrase in loaded) {
-      _phrasePerformance.putIfAbsent(_phraseKey(phrase), () => 0);
+      _phrasePerformance.putIfAbsent(phrase.key, () => 0);
     }
   }
 
@@ -85,22 +95,21 @@ class _HomePageState extends State<HomePage> {
         const SnackBar(content: Text('Scores de quiz réinitialisés.')),
       );
       setState(() {});
+      _pickNewQuestion();
     }
   }
 
   Future<void> _loadPhrases() async {
     final loaded = await PhraseRepository.loadPhrases();
     await _loadPerformance();
-    setState(() {
-      _phrases.addAll(loaded);
-      _initializePerformance(loaded);
-      _loading = false;
-      _pickNewQuestion();
-    });
+    _phrases.addAll(loaded);
+    _initializePerformance(loaded);
+    setState(() => _loading = false);
+    _pickNewQuestion();
   }
 
   int _phraseWeight(Phrase phrase) {
-    final performance = _phrasePerformance[_phraseKey(phrase)] ?? 0;
+    final performance = _phrasePerformance[phrase.key] ?? 0;
     return (5 - performance).clamp(1, 10);
   }
 
@@ -135,7 +144,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _recordAnswerResult(bool correct) async {
     if (_mode == QuizMode.frenchToJapanese) {
-      final key = _phraseKey(_currentPhrase);
+      final key = _currentPhrase.key;
       final currentScore = _phrasePerformance[key] ?? 0;
       final updatedScore = (currentScore + (correct ? 1 : -1)).clamp(-5, 5);
       _phrasePerformance[key] = updatedScore;
@@ -145,16 +154,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _changeMode(QuizMode mode) {
-    setState(() {
-      _mode = mode;
-    });
+    _mode = mode;
     _pickNewQuestion();
   }
 
   Future<void> _speakJapanese() async {
-    await _tts.setLanguage('ja-JP');
-    await _tts.setSpeechRate(0.45);
-    await _tts.setPitch(1.0);
     await _tts.speak(_currentPhrase.japanese);
   }
 
