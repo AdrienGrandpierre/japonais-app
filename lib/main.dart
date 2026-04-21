@@ -307,11 +307,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _recordAnswerResult(bool correct) async {
-    final key = _phraseKey(_currentPhrase);
-    final currentScore = _phrasePerformance[key] ?? 0;
-    final updatedScore = (currentScore + (correct ? 1 : -1)).clamp(-5, 5);
-    _phrasePerformance[key] = updatedScore;
-    await _savePerformance();
+    if (_mode == QuizMode.frenchToJapanese) {
+      final key = _phraseKey(_currentPhrase);
+      final currentScore = _phrasePerformance[key] ?? 0;
+      final updatedScore = (currentScore + (correct ? 1 : -1)).clamp(-5, 5);
+      _phrasePerformance[key] = updatedScore;
+      await _savePerformance();
+    }
     _pickNewQuestion();
   }
 
