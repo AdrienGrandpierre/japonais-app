@@ -46,9 +46,9 @@ class Phrase {
         if (item is Map<String, dynamic>) {
           dialogLines.add(PhraseDialogLine.fromJson(item));
         } else if (item is Map) {
-          dialogLines.add(PhraseDialogLine.fromJson(
-            Map<String, dynamic>.from(item),
-          ));
+          dialogLines.add(
+            PhraseDialogLine.fromJson(Map<String, dynamic>.from(item)),
+          );
         }
       }
     }
