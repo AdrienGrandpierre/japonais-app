@@ -585,6 +585,12 @@
     ],
     "Compréhension": [
         {
+            "japanese": "大丈夫",
+            "romanji": "Daijōbu",
+            "french": "Ça va / C'est bon / Pas de problème / Pas besoin",
+            "context": "Exprimer que tout va bien ou que quelque chose est acceptable."
+        },
+        {
             "japanese": "わかる",
             "romanji": "Wakaru",
             "french": "Je comprends",
