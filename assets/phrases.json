@@ -175,8 +175,12 @@
             "romanji": "Sakana tabenai",
             "french": "Je ne mange pas de poisson",
             "context": "Indiquer une restriction alimentaire au restaurant."
-        },
-        {
+        },        {
+            "japanese": "すみません、トイレどこですか？",
+            "romanji": "Sumimasen, toire doko desu ka?",
+            "french": "Excusez-moi, où sont les toilettes ?",
+            "context": "Demander où sont les toilettes au personnel d'un restaurant ou lieu public."
+        },        {
             "japanese": "英語のメニューありますか？",
             "romanji": "Eigo no menyū arimasu ka?",
             "french": "Est-ce qu'il y a un menu en anglais ?",
@@ -289,14 +293,14 @@
     ],
     "Shopping": [
         {
-            "japanese": "これいくら？",
-            "romanji": "Kore ikura?",
+            "japanese": "これいくらですか？",
+            "romanji": "Kore ikura desu ka?",
             "french": "Ça coûte combien ?",
             "context": "Demander prix.",
             "dialog": [
                 {
-                    "japanese": "これいくら？",
-                    "romanji": "Kore ikura?",
+                    "japanese": "これいくらですか？",
+                    "romanji": "Kore ikura desu ka?",
                     "french": "Ça coûte combien ?"
                 },
                 {
@@ -351,14 +355,14 @@
     ],
     "Transport": [
         {
-            "japanese": "すみません、駅どこ？",
-            "romanji": "Sumimasen, eki doko?",
+            "japanese": "すみません、駅どこですか？",
+            "romanji": "Sumimasen, eki doko desu ka?",
             "french": "Excusez-moi, où est la gare ?",
             "context": "Demande direction.",
             "dialog": [
                 {
-                    "japanese": "すみません、駅どこ？",
-                    "romanji": "Sumimasen, eki doko?",
+                    "japanese": "すみません、駅どこですか？",
+                    "romanji": "Sumimasen, eki doko desu ka?",
                     "french": "Excusez-moi, où est la gare ?"
                 },
                 {
@@ -553,16 +557,10 @@
             ]
         },
         {
-            "japanese": "トイレどこ？",
-            "romanji": "Toire doko?",
-            "french": "Toilettes où ?",
-            "context": "Demande toilettes."
-        },
-        {
-            "japanese": "トイレありますか？",
-            "romanji": "Toire arimasu ka?",
-            "french": "Est-ce qu'il y a des toilettes ?",
-            "context": "Demander s'il y a des toilettes (formule plus polie)."
+            "japanese": "すみません、トイレどこですか？",
+            "romanji": "Sumimasen, toire doko desu ka?",
+            "french": "Excusez-moi, où sont les toilettes ?",
+            "context": "Demander où sont les toilettes au personnel d'un restaurant ou lieu public."
         },
         {
             "japanese": "Wi-Fiありませんか？",
