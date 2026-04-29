@@ -110,6 +110,42 @@
                 }
             ]
         },
+          {
+            "japanese": "店内で",
+            "romanji": "Tennai de",
+            "french": "Sur place",
+            "context": "Répondre quand on te demande sur place ou à emporter.",
+            "dialog": [
+                {
+                    "japanese": "店内ですか？持ち帰りですか？",
+                    "romanji": "Tennai desu ka? Mochikaeri desu ka?",
+                    "french": "Sur place ou à emporter ?"
+                },
+                {
+                    "japanese": "店内で",
+                    "romanji": "Tennai de",
+                    "french": "Sur place"
+                }
+            ]
+        },
+        {
+            "japanese": "持ち帰りで",
+            "romanji": "Mochikaeri de",
+            "french": "À emporter",
+            "context": "Répondre quand on te demande sur place ou à emporter.",
+            "dialog": [
+                {
+                    "japanese": "店内ですか？持ち帰りですか？",
+                    "romanji": "Tennai desu ka? Mochikaeri desu ka?",
+                    "french": "Sur place ou à emporter ?"
+                },
+                {
+                    "japanese": "持ち帰りで",
+                    "romanji": "Mochikaeri de",
+                    "french": "À emporter"
+                }
+            ]
+        },
         {
             "japanese": "これください",
             "romanji": "Kore kudasai",
@@ -605,6 +641,24 @@
             "romanji": "Muri",
             "french": "Impossible",
             "context": "Refus."
+        },
+        {
+            "japanese": "すみません、これ何て読みますか？",
+            "romanji": "Sumimasen, kore nante yomimasu ka?",
+            "french": "Excusez-moi, ça se prononce comment ?",
+            "context": "Demander la prononciation d’un mot en le montrant du doigt.",
+            "dialog": [
+                {
+                    "japanese": "すみません、これ何て読みますか？",
+                    "romanji": "Sumimasen, kore nante yomimasu ka?",
+                    "french": "Excusez-moi, ça se prononce comment ?"
+                },
+                {
+                    "japanese": "〇〇と読みます",
+                    "romanji": "〇〇 to yomimasu",
+                    "french": "Ça se lit 〇〇"
+                }
+            ]
         }
     ]
 }
