@@ -557,6 +557,24 @@
             ]
         },
         {
+            "japanese": "ITエンジニアやってる",
+            "romanji": "IT enjinia yatteru",
+            "french": "Je travaille comme ingénieur informatique",
+            "context": "Répondre à une question sur son travail.",
+            "dialog": [
+                {
+                    "japanese": "仕事何してるの？",
+                    "romanji": "Shigoto nani shiteru no?",
+                    "french": "Tu travailles dans quoi ?"
+                },
+                {
+                    "japanese": "ITエンジニアやってる",
+                    "romanji": "IT enjinia yatteru",
+                    "french": "Je travaille comme ingénieur informatique"
+                }
+            ]
+        },
+        {
             "japanese": "フランス人",
             "romanji": "Furansujin",
             "french": "Je suis Français",
@@ -613,7 +631,7 @@
         {
             "japanese": "日本語ちょっとだけです",
             "romanji": "Nihongo chotto dake desu",
-            "french": "Je connais un peu japonais",
+            "french": "Je connais un peu le japonais",
             "context": "Indiquer modestement son niveau de japonais."
         }
     ],
@@ -642,23 +660,41 @@
             "french": "Impossible",
             "context": "Refus."
         },
-        {
-            "japanese": "すみません、これ何て読みますか？",
-            "romanji": "Sumimasen, kore nante yomimasu ka?",
-            "french": "Excusez-moi, ça se prononce comment ?",
-            "context": "Demander la prononciation d’un mot en le montrant du doigt.",
-            "dialog": [
-                {
-                    "japanese": "すみません、これ何て読みますか？",
-                    "romanji": "Sumimasen, kore nante yomimasu ka?",
-                    "french": "Excusez-moi, ça se prononce comment ?"
-                },
-                {
-                    "japanese": "〇〇と読みます",
-                    "romanji": "〇〇 to yomimasu",
-                    "french": "Ça se lit 〇〇"
-                }
-            ]
-        }
+          {
+        "japanese": "すみません、これ何て読みますか？",
+        "romanji": "Sumimasen, kore nante yomimasu ka?",
+        "french": "Excusez-moi, ça se lit comment ?",
+        "context": "Demander la lecture ou la prononciation d’un mot en le montrant.",
+        "dialog": [
+            {
+                "japanese": "すみません、これ何て読みますか？",
+                "romanji": "Sumimasen, kore nante yomimasu ka?",
+                "french": "Excusez-moi, ça se lit comment ?"
+            },
+            {
+                "japanese": "〇〇と読みます",
+                "romanji": "〇〇 to yomimasu",
+                "french": "Ça se lit 〇〇"
+            }
+        ]
+    },
+    {
+        "japanese": "すみません、これ何て言いますか？",
+        "romanji": "Sumimasen, kore nante iimasu ka?",
+        "french": "Excusez-moi, ça se dit comment ?",
+        "context": "Demander comment dire quelque chose ou le nom d’un objet en le montrant.",
+        "dialog": [
+            {
+                "japanese": "すみません、これ何て言いますか？",
+                "romanji": "Sumimasen, kore nante iimasu ka?",
+                "french": "Excusez-moi, ça se dit comment ?"
+            },
+            {
+                "japanese": "〇〇と言います",
+                "romanji": "〇〇 to iimasu",
+                "french": "Ça se dit 〇〇"
+            }
+        ]
+    }
     ]
 }
