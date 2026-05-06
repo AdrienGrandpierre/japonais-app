@@ -333,10 +333,10 @@
             "context": "Question du vendeur au konbini pour proposer des baguettes."
         },
         {
-            "japanese": "袋つけますか？",
-            "romanji": "Fukuro tsukemasu ka?",
-            "french": "Vous voulez un sac ?",
-            "context": "Question du vendeur au konbini pour proposer un sac."
+            "japanese": "レジ袋つけますか？",
+            "romanji": "Reji bukuro tsukemasu ka?",
+            "french": "Vous voulez un sac plastique ?",
+            "context": "Question du vendeur au konbini pour proposer un sac plastique (レジ袋 = sac de caisse)."
         }
     ],
     "Shopping": [
