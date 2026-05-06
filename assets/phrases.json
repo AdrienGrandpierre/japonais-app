@@ -325,6 +325,18 @@
             "romanji": "Kore, atatamete kudasai",
             "french": "Pouvez-vous réchauffer ça ?",
             "context": "Demander à réchauffer un plat."
+        },
+        {
+            "japanese": "お箸つけますか？",
+            "romanji": "Ohashi tsukemasu ka?",
+            "french": "Vous voulez des baguettes ?",
+            "context": "Question du vendeur au konbini pour proposer des baguettes."
+        },
+        {
+            "japanese": "袋つけますか？",
+            "romanji": "Fukuro tsukemasu ka?",
+            "french": "Vous voulez un sac ?",
+            "context": "Question du vendeur au konbini pour proposer un sac."
         }
     ],
     "Shopping": [
@@ -385,6 +397,24 @@
                     "japanese": "ありません。",
                     "romanji": "Arimasen.",
                     "french": "Il n'y en a pas."
+                }
+            ]
+        },
+        {
+            "japanese": "カード使えますか？",
+            "romanji": "Kaado tsukaemasu ka?",
+            "french": "Est-ce que je peux payer par carte ?",
+            "context": "Demander si le paiement par carte bancaire est accepté.",
+            "dialog": [
+                {
+                    "japanese": "カード使えますか？",
+                    "romanji": "Kaado tsukaemasu ka?",
+                    "french": "Est-ce que je peux payer par carte ?"
+                },
+                {
+                    "japanese": "はい、使えます",
+                    "romanji": "Hai, tsukaemasu",
+                    "french": "Oui, vous pouvez."
                 }
             ]
         }
