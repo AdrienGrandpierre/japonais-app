@@ -329,13 +329,13 @@
         {
             "japanese": "お箸つけますか？",
             "romanji": "Ohashi tsukemasu ka?",
-            "french": "Vous voulez des baguettes ?",
+            "french": "Je vous mets des baguettes ?",
             "context": "Question du vendeur au konbini pour proposer des baguettes."
         },
         {
             "japanese": "レジ袋つけますか？",
             "romanji": "Reji bukuro tsukemasu ka?",
-            "french": "Vous voulez un sac plastique ?",
+            "french": "Je vous mets un sac plastique ?",
             "context": "Question du vendeur au konbini pour proposer un sac plastique (レジ袋 = sac de caisse)."
         }
     ],
