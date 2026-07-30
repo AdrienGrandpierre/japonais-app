@@ -233,7 +233,24 @@
                     "french": "Oui, voilà."
                 }
             ]
-        }
+        }, {
+  "japanese": "すみません、注文いいですか？",
+  "romanji": "Sumimasen, chūmon ii desu ka?",
+  "french": "Je voudrais commander",
+  "context": "Attirer l'attention du serveur pour passer commande au restaurant."
+},
+{
+  "japanese": "辛いですか？",
+  "romanji": "Karai desu ka?",
+  "french": "C'est épicé ?",
+  "context": "Demander si un plat est épicé."
+},
+{
+  "japanese": "めっちゃ美味しい！",
+  "romanji": "Meccha oishii!",
+  "french": "C'est délicieux !",
+  "context": "Réagir naturellement après avoir goûté un plat."
+}
     ],
     "Konbini": [
         {
@@ -417,7 +434,42 @@
                     "french": "Oui, vous pouvez."
                 }
             ]
-        }
+        },{
+  "japanese": "ちょっと考えます",
+  "romanji": "Chotto kangaemasu",
+  "french": "Je vais réfléchir",
+  "context": "Dire que l'on souhaite encore réfléchir avant de choisir."
+},
+{
+  "japanese": "これにします",
+  "romanji": "Kore ni shimasu",
+  "french": "Je vais prendre ça",
+  "context": "Choisir finalement un article ou un plat."
+},
+{
+  "japanese": "やっぱり、いいです",
+  "romanji": "Yappari, ii desu",
+  "french": "Finalement non merci",
+  "context": "Changer d'avis avant de finaliser un achat."
+},
+{
+  "japanese": "他の色ありますか？",
+  "romanji": "Hoka no iro arimasu ka?",
+  "french": "Vous avez une autre couleur ?",
+  "context": "Demander si un article existe dans une autre couleur.",
+  "dialog": [
+    {
+      "japanese": "他の色ありますか？",
+      "romanji": "Hoka no iro arimasu ka?",
+      "french": "Vous avez une autre couleur ?"
+    },
+    {
+      "japanese": "はい、あります",
+      "romanji": "Hai, arimasu",
+      "french": "Oui, nous en avons."
+    }
+  ]
+}
     ],
     "Transport": [
         {
@@ -491,7 +543,42 @@
             "romanji": "Hidari",
             "french": "Gauche",
             "context": "Direction."
-        }
+        },{
+  "japanese": "何番ホーム？",
+  "romanji": "Nanban hōmu?",
+  "french": "Quel quai ?",
+  "context": "Demander rapidement le numéro du quai."
+},
+{
+  "japanese": "この電車、〇〇止まりますか？",
+  "romanji": "Kono densha, 〇〇 tomarimasu ka?",
+  "french": "Ce train s'arrête à ... ?",
+  "context": "Vérifier si un train s'arrête à une gare précise.",
+  "dialog": [
+    {
+      "japanese": "この電車、新宿止まりますか？",
+      "romanji": "Kono densha, Shinjuku tomarimasu ka?",
+      "french": "Ce train s'arrête à Shinjuku ?"
+    },
+    {
+      "japanese": "はい、止まります",
+      "romanji": "Hai, tomarimasu",
+      "french": "Oui, il s'y arrête."
+    }
+  ]
+},
+{
+  "japanese": "あと何分？",
+  "romanji": "Ato nanpun?",
+  "french": "Combien de temps jusqu'à ... ?",
+  "context": "Demander le temps restant avant d'arriver."
+},
+{
+  "japanese": "電車間違えた",
+  "romanji": "Densha machigaeta",
+  "french": "Je me suis trompé de train",
+  "context": "Expliquer que l'on a pris le mauvais train."
+}
     ],
     "Izakaya": [
         {
@@ -663,7 +750,24 @@
             "romanji": "Nihongo chotto dake desu",
             "french": "Je connais un peu le japonais",
             "context": "Indiquer modestement son niveau de japonais."
-        }
+        },{
+  "japanese": "日本は二回目です",
+  "romanji": "Nihon wa nikai-me desu",
+  "french": "C'est ma deuxième fois au Japon",
+  "context": "Parler de ses précédents voyages au Japon."
+},
+{
+  "japanese": "どこがおすすめ？",
+  "romanji": "Doko ga osusume?",
+  "french": "Tu me conseilles quoi à visiter ?",
+  "context": "Demander à quelqu'un ses recommandations de lieux à visiter."
+},
+{
+  "japanese": "英語うまいね！",
+  "romanji": "Eigo umai ne!",
+  "french": "Ton anglais est très bon",
+  "context": "Compliment amical lors d'une discussion."
+}
     ],
     "Compréhension": [
         {
@@ -725,6 +829,30 @@
                 "french": "Ça se dit 〇〇"
             }
         ]
+    },
+    {
+  "japanese": "日本語あんまり話せない",
+  "romanji": "Nihongo anmari hanasenai",
+  "french": "Je ne parle pas bien japonais",
+  "context": "Expliquer modestement son niveau de japonais."
+},
+{
+  "japanese": "どういう意味？",
+  "romanji": "Dō iu imi?",
+  "french": "Qu'est-ce que ça veut dire ?",
+  "context": "Demander la signification d'un mot ou d'une expression.",
+  "dialog": [
+    {
+      "japanese": "これどういう意味？",
+      "romanji": "Kore dō iu imi?",
+      "french": "Ça veut dire quoi ?"
+    },
+    {
+      "japanese": "「入口」ってこと",
+      "romanji": "\"Iriguchi\" tte koto",
+      "french": "Ça veut dire « entrée »."
     }
+  ]
+}
     ]
 }
