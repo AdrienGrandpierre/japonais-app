@@ -23,7 +23,9 @@ class AllPhrasesPage extends StatefulWidget {
 class _AllPhrasesPageState extends State<AllPhrasesPage> {
   final FlutterTts _tts = FlutterTts();
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   String _searchQuery = '';
+  final Map<String, GlobalKey> _categoryKeys = {};
 
   @override
   void initState() {
@@ -35,6 +37,7 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
   void dispose() {
     _tts.stop();
     _searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -72,11 +75,16 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
       grouped.putIfAbsent(category, () => []).add(phrase);
     }
 
+    for (final category in grouped.keys) {
+      _categoryKeys.putIfAbsent(category, () => GlobalKey());
+    }
+
     final phraseList = grouped.entries
         .expand<Widget>(
           (entry) => [
             Text(
               entry.key,
+              key: _categoryKeys[entry.key],
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -104,26 +112,37 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-              child: TextField(
-                controller: _searchController,
-                onChanged: (value) => setState(() => _searchQuery = value),
-                decoration: InputDecoration(
-                  hintText: 'Rechercher une traduction...',
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: _searchQuery.isNotEmpty
-                      ? IconButton(
-                          icon: const Icon(Icons.clear),
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() => _searchQuery = '');
-                          },
-                        )
-                      : null,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      onChanged: (value) =>
+                          setState(() => _searchQuery = value),
+                      decoration: InputDecoration(
+                        hintText: 'Rechercher une traduction...',
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: _searchQuery.isNotEmpty
+                            ? IconButton(
+                                icon: const Icon(Icons.clear),
+                                onPressed: () {
+                                  _searchController.clear();
+                                  setState(() => _searchQuery = '');
+                                },
+                              )
+                            : null,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                        ),
+                      ),
+                    ),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                ),
+                  const SizedBox(width: 8),
+                  _buildCategoryMenuButton(grouped.keys.toList()),
+                ],
               ),
             ),
             Expanded(
@@ -135,7 +154,9 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
                       ),
                     )
                   : ListView(
+                      controller: _scrollController,
                       padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                      cacheExtent: 100000,
                       children: phraseList,
                     ),
             ),
@@ -143,5 +164,35 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
         ),
       ),
     );
+  }
+
+  Widget _buildCategoryMenuButton(List<String> categories) {
+    return PopupMenuButton<String>(
+      icon: const Icon(Icons.list),
+      tooltip: 'Aller à un groupe',
+      onSelected: _scrollToCategory,
+      itemBuilder: (context) => categories
+          .map(
+            (category) =>
+                PopupMenuItem<String>(value: category, child: Text(category)),
+          )
+          .toList(),
+    );
+  }
+
+  void _scrollToCategory(String category) {
+    // Wait for the popup menu's close animation so the key's context is stable.
+    Future.delayed(const Duration(milliseconds: 250), () {
+      final key = _categoryKeys[category];
+      final ctx = key?.currentContext;
+      if (ctx != null) {
+        Scrollable.ensureVisible(
+          ctx,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          alignment: 0.0,
+        );
+      }
+    });
   }
 }
