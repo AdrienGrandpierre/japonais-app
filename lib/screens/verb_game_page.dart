@@ -253,21 +253,40 @@ class _VerbGamePageState extends State<VerbGamePage> {
                                   width: 2,
                                 ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    choice.japanese,
-                                    style: const TextStyle(fontSize: 20),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        choice.japanese,
+                                        style: const TextStyle(fontSize: 20),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      Text(
+                                        choice.romanji,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: theme
+                                              .colorScheme
+                                              .onSurfaceVariant,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(width: 12),
-                                  Text(
-                                    choice.romanji,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: theme.colorScheme.onSurfaceVariant,
+                                  if (_answered) ...[
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      _formLabel(choice.key),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                            theme.colorScheme.onSurfaceVariant,
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ],
                               ),
                             ),
