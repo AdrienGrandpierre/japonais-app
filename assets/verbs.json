@@ -1,0 +1,926 @@
+{
+  "taberu": {
+    "japanese": "食べる",
+    "romanji": "Taberu",
+    "french": "Manger",
+    "forms": {
+      "past_polite": {
+        "japanese": "食べました",
+        "romanji": "Tabemashita",
+        "french": "J'ai mangé (poli)",
+        "register": "poli",
+        "example": { "japanese": "昨日、ラーメン食べました", "romanji": "Kinō, rāmen tabemashita", "french": "Hier, j'ai mangé des ramen" }
+      },
+      "past_casual": {
+        "japanese": "食べた",
+        "romanji": "Tabeta",
+        "french": "J'ai mangé (familier)",
+        "register": "familier",
+        "example": { "japanese": "もう食べた？", "romanji": "Mō tabeta?", "french": "T'as déjà mangé ?" }
+      },
+      "negative_polite": {
+        "japanese": "食べません",
+        "romanji": "Tabemasen",
+        "french": "Je ne mange pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "肉は食べません", "romanji": "Niku wa tabemasen", "french": "Je ne mange pas de viande" }
+      },
+      "negative_casual": {
+        "japanese": "食べない",
+        "romanji": "Tabenai",
+        "french": "Je ne mange pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "朝ごはん食べない", "romanji": "Asagohan tabenai", "french": "Je ne mange pas le petit-déjeuner" }
+      },
+      "want": {
+        "japanese": "食べたい",
+        "romanji": "Tabetai",
+        "french": "Je veux manger",
+        "register": "neutre",
+        "example": { "japanese": "何か食べたい", "romanji": "Nanika tabetai", "french": "Je veux manger quelque chose" }
+      },
+      "progressive": {
+        "japanese": "食べてる",
+        "romanji": "Tabeteru",
+        "french": "Je suis en train de manger",
+        "register": "familier",
+        "example": { "japanese": "今、食べてる", "romanji": "Ima, tabeteru", "french": "Là, je suis en train de manger" }
+      },
+      "permission": {
+        "japanese": "食べてもいい？",
+        "romanji": "Tabete mo ii?",
+        "french": "Je peux manger ?",
+        "register": "neutre",
+        "example": { "japanese": "これ食べてもいい？", "romanji": "Kore tabete mo ii?", "french": "Je peux manger ça ?" }
+      },
+      "potential": {
+        "japanese": "食べられる",
+        "romanji": "Taberareru",
+        "french": "Pouvoir manger",
+        "register": "neutre",
+        "example": { "japanese": "辛いもの食べられる？", "romanji": "Karai mono taberareru?", "french": "Tu peux manger épicé ?" }
+      },
+      "imperative": {
+        "japanese": "食べろ",
+        "romanji": "Tabero",
+        "french": "Mange !",
+        "register": "familier",
+        "example": { "japanese": "全部食べろ！", "romanji": "Zenbu tabero!", "french": "Mange tout !" }
+      },
+      "try": {
+        "japanese": "食べてみる",
+        "romanji": "Tabete miru",
+        "french": "Essayer de manger / goûter",
+        "register": "neutre",
+        "example": { "japanese": "これ食べてみる？", "romanji": "Kore tabete miru?", "french": "Tu veux goûter ça ?" }
+      }
+    }
+  },
+  "nomu": {
+    "japanese": "飲む",
+    "romanji": "Nomu",
+    "french": "Boire",
+    "forms": {
+      "past_polite": {
+        "japanese": "飲みました",
+        "romanji": "Nomimashita",
+        "french": "J'ai bu (poli)",
+        "register": "poli",
+        "example": { "japanese": "コーヒー飲みました", "romanji": "Kōhī nomimashita", "french": "J'ai bu du café" }
+      },
+      "past_casual": {
+        "japanese": "飲んだ",
+        "romanji": "Nonda",
+        "french": "J'ai bu (familier)",
+        "register": "familier",
+        "example": { "japanese": "昨日めっちゃ飲んだ", "romanji": "Kinō meccha nonda", "french": "Hier j'ai trop bu" }
+      },
+      "negative_polite": {
+        "japanese": "飲みません",
+        "romanji": "Nomimasen",
+        "french": "Je ne bois pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "お酒は飲みません", "romanji": "Osake wa nomimasen", "french": "Je ne bois pas d'alcool" }
+      },
+      "negative_casual": {
+        "japanese": "飲まない",
+        "romanji": "Nomanai",
+        "french": "Je ne bois pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "今日は飲まない", "romanji": "Kyō wa nomanai", "french": "Aujourd'hui je ne bois pas" }
+      },
+      "want": {
+        "japanese": "飲みたい",
+        "romanji": "Nomitai",
+        "french": "Je veux boire",
+        "register": "neutre",
+        "example": { "japanese": "ビール飲みたい", "romanji": "Bīru nomitai", "french": "Je veux boire une bière" }
+      },
+      "progressive": {
+        "japanese": "飲んでる",
+        "romanji": "Nonderu",
+        "french": "Je suis en train de boire",
+        "register": "familier",
+        "example": { "japanese": "今、お茶飲んでる", "romanji": "Ima, ocha nonderu", "french": "Là, je bois du thé" }
+      },
+      "permission": {
+        "japanese": "飲んでもいい？",
+        "romanji": "Nonde mo ii?",
+        "french": "Je peux boire ?",
+        "register": "neutre",
+        "example": { "japanese": "これ飲んでもいい？", "romanji": "Kore nonde mo ii?", "french": "Je peux boire ça ?" }
+      },
+      "potential": {
+        "japanese": "飲める",
+        "romanji": "Nomeru",
+        "french": "Pouvoir boire",
+        "register": "neutre",
+        "example": { "japanese": "お酒飲める？", "romanji": "Osake nomeru?", "french": "Tu peux boire de l'alcool ?" }
+      },
+      "imperative": {
+        "japanese": "飲め",
+        "romanji": "Nome",
+        "french": "Bois !",
+        "register": "familier",
+        "example": { "japanese": "水飲め！", "romanji": "Mizu nome!", "french": "Bois de l'eau !" }
+      },
+      "try": {
+        "japanese": "飲んでみる",
+        "romanji": "Nonde miru",
+        "french": "Essayer de boire / goûter",
+        "register": "neutre",
+        "example": { "japanese": "これ飲んでみる？", "romanji": "Kore nonde miru?", "french": "Tu veux goûter ça ?" }
+      }
+    }
+  },
+  "iku": {
+    "japanese": "行く",
+    "romanji": "Iku",
+    "french": "Aller",
+    "forms": {
+      "past_polite": {
+        "japanese": "行きました",
+        "romanji": "Ikimashita",
+        "french": "J'y suis allé (poli)",
+        "register": "poli",
+        "example": { "japanese": "東京に行きました", "romanji": "Tōkyō ni ikimashita", "french": "Je suis allé à Tokyo" }
+      },
+      "past_casual": {
+        "japanese": "行った",
+        "romanji": "Itta",
+        "french": "J'y suis allé (familier)",
+        "register": "familier",
+        "example": { "japanese": "昨日、渋谷に行った", "romanji": "Kinō, Shibuya ni itta", "french": "Hier, je suis allé à Shibuya" }
+      },
+      "negative_polite": {
+        "japanese": "行きません",
+        "romanji": "Ikimasen",
+        "french": "Je n'y vais pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "今日は行きません", "romanji": "Kyō wa ikimasen", "french": "Aujourd'hui je n'y vais pas" }
+      },
+      "negative_casual": {
+        "japanese": "行かない",
+        "romanji": "Ikanai",
+        "french": "Je n'y vais pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "明日は行かない", "romanji": "Ashita wa ikanai", "french": "Demain je n'y vais pas" }
+      },
+      "want": {
+        "japanese": "行きたい",
+        "romanji": "Ikitai",
+        "french": "Je veux y aller",
+        "register": "neutre",
+        "example": { "japanese": "日本に行きたい", "romanji": "Nihon ni ikitai", "french": "Je veux aller au Japon" }
+      },
+      "progressive": {
+        "japanese": "行ってる",
+        "romanji": "Itteru",
+        "french": "J'y vais régulièrement / je suis parti",
+        "register": "familier",
+        "example": { "japanese": "ジムに行ってる", "romanji": "Jimu ni itteru", "french": "Je vais à la salle de sport" }
+      },
+      "permission": {
+        "japanese": "行ってもいい？",
+        "romanji": "Itte mo ii?",
+        "french": "Je peux y aller ?",
+        "register": "neutre",
+        "example": { "japanese": "トイレ行ってもいい？", "romanji": "Toire itte mo ii?", "french": "Je peux aller aux toilettes ?" }
+      },
+      "potential": {
+        "japanese": "行ける",
+        "romanji": "Ikeru",
+        "french": "Pouvoir y aller",
+        "register": "neutre",
+        "example": { "japanese": "明日行ける？", "romanji": "Ashita ikeru?", "french": "Tu peux y aller demain ?" }
+      },
+      "imperative": {
+        "japanese": "行け",
+        "romanji": "Ike",
+        "french": "Va !",
+        "register": "familier",
+        "example": { "japanese": "早く行け！", "romanji": "Hayaku ike!", "french": "Dépêche-toi d'y aller !" }
+      },
+      "try": {
+        "japanese": "行ってみる",
+        "romanji": "Itte miru",
+        "french": "Essayer d'y aller",
+        "register": "neutre",
+        "example": { "japanese": "あの店行ってみる？", "romanji": "Ano mise itte miru?", "french": "On essaie d'aller dans ce resto ?" }
+      }
+    }
+  },
+  "kuru": {
+    "japanese": "来る",
+    "romanji": "Kuru",
+    "french": "Venir",
+    "forms": {
+      "past_polite": {
+        "japanese": "来ました",
+        "romanji": "Kimashita",
+        "french": "Je suis venu (poli)",
+        "register": "poli",
+        "example": { "japanese": "日本に来ました", "romanji": "Nihon ni kimashita", "french": "Je suis venu au Japon" }
+      },
+      "past_casual": {
+        "japanese": "来た",
+        "romanji": "Kita",
+        "french": "Je suis venu (familier)",
+        "register": "familier",
+        "example": { "japanese": "やっと来た！", "romanji": "Yatto kita!", "french": "T'es enfin arrivé !" }
+      },
+      "negative_polite": {
+        "japanese": "来ません",
+        "romanji": "Kimasen",
+        "french": "Il ne vient pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "彼は来ません", "romanji": "Kare wa kimasen", "french": "Il ne vient pas" }
+      },
+      "negative_casual": {
+        "japanese": "来ない",
+        "romanji": "Konai",
+        "french": "Il ne vient pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "まだ来ない", "romanji": "Mada konai", "french": "Il n'est toujours pas là" }
+      },
+      "want": {
+        "japanese": "来たい",
+        "romanji": "Kitai",
+        "french": "Je veux venir",
+        "register": "neutre",
+        "example": { "japanese": "また来たい", "romanji": "Mata kitai", "french": "Je veux revenir" }
+      },
+      "progressive": {
+        "japanese": "来てる",
+        "romanji": "Kiteru",
+        "french": "Il est venu / il est là",
+        "register": "familier",
+        "example": { "japanese": "もう来てる？", "romanji": "Mō kiteru?", "french": "Il est déjà là ?" }
+      },
+      "permission": {
+        "japanese": "来てもいい？",
+        "romanji": "Kite mo ii?",
+        "french": "Je peux venir ?",
+        "register": "neutre",
+        "example": { "japanese": "明日来てもいい？", "romanji": "Ashita kite mo ii?", "french": "Je peux venir demain ?" }
+      },
+      "potential": {
+        "japanese": "来られる",
+        "romanji": "Korareru",
+        "french": "Pouvoir venir",
+        "register": "neutre",
+        "example": { "japanese": "明日来られる？", "romanji": "Ashita korareru?", "french": "Tu peux venir demain ?" }
+      },
+      "imperative": {
+        "japanese": "来い",
+        "romanji": "Koi",
+        "french": "Viens !",
+        "register": "familier",
+        "example": { "japanese": "こっちに来い！", "romanji": "Kocchi ni koi!", "french": "Viens par ici !" }
+      },
+      "try": {
+        "japanese": "来てみる",
+        "romanji": "Kite miru",
+        "french": "Essayer de venir",
+        "register": "neutre",
+        "example": { "japanese": "一回来てみる？", "romanji": "Ikkai kite miru?", "french": "Tu veux essayer de venir une fois ?" }
+      }
+    }
+  },
+  "kaeru": {
+    "japanese": "帰る",
+    "romanji": "Kaeru",
+    "french": "Rentrer",
+    "forms": {
+      "past_polite": {
+        "japanese": "帰りました",
+        "romanji": "Kaerimashita",
+        "french": "Je suis rentré (poli)",
+        "register": "poli",
+        "example": { "japanese": "昨日早く帰りました", "romanji": "Kinō hayaku kaerimashita", "french": "Hier je suis rentré tôt" }
+      },
+      "past_casual": {
+        "japanese": "帰った",
+        "romanji": "Kaetta",
+        "french": "Je suis rentré (familier)",
+        "register": "familier",
+        "example": { "japanese": "もう帰った？", "romanji": "Mō kaetta?", "french": "T'es déjà rentré ?" }
+      },
+      "negative_polite": {
+        "japanese": "帰りません",
+        "romanji": "Kaerimasen",
+        "french": "Je ne rentre pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "まだ帰りません", "romanji": "Mada kaerimasen", "french": "Je ne rentre pas encore" }
+      },
+      "negative_casual": {
+        "japanese": "帰らない",
+        "romanji": "Kaeranai",
+        "french": "Je ne rentre pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "今日は帰らない", "romanji": "Kyō wa kaeranai", "french": "Aujourd'hui je ne rentre pas" }
+      },
+      "want": {
+        "japanese": "帰りたい",
+        "romanji": "Kaeritai",
+        "french": "Je veux rentrer",
+        "register": "neutre",
+        "example": { "japanese": "早く帰りたい", "romanji": "Hayaku kaeritai", "french": "Je veux rentrer vite" }
+      },
+      "progressive": {
+        "japanese": "帰ってる",
+        "romanji": "Kaetteru",
+        "french": "Il est rentré / en train de rentrer",
+        "register": "familier",
+        "example": { "japanese": "もう帰ってる", "romanji": "Mō kaetteru", "french": "Il est déjà rentré" }
+      },
+      "permission": {
+        "japanese": "帰ってもいい？",
+        "romanji": "Kaette mo ii?",
+        "french": "Je peux rentrer ?",
+        "register": "neutre",
+        "example": { "japanese": "もう帰ってもいい？", "romanji": "Mō kaette mo ii?", "french": "Je peux rentrer maintenant ?" }
+      },
+      "potential": {
+        "japanese": "帰れる",
+        "romanji": "Kaereru",
+        "french": "Pouvoir rentrer",
+        "register": "neutre",
+        "example": { "japanese": "今日早く帰れる？", "romanji": "Kyō hayaku kaereru?", "french": "Tu peux rentrer tôt aujourd'hui ?" }
+      },
+      "imperative": {
+        "japanese": "帰れ",
+        "romanji": "Kaere",
+        "french": "Rentre !",
+        "register": "familier",
+        "example": { "japanese": "早く帰れ！", "romanji": "Hayaku kaere!", "french": "Rentre vite !" }
+      },
+      "try": {
+        "japanese": "帰ってみる",
+        "romanji": "Kaette miru",
+        "french": "Essayer de rentrer",
+        "register": "neutre",
+        "example": { "japanese": "早く帰ってみる", "romanji": "Hayaku kaette miru", "french": "Je vais essayer de rentrer tôt" }
+      }
+    }
+  },
+  "miru": {
+    "japanese": "見る",
+    "romanji": "Miru",
+    "french": "Voir / Regarder",
+    "forms": {
+      "past_polite": {
+        "japanese": "見ました",
+        "romanji": "Mimashita",
+        "french": "J'ai vu (poli)",
+        "register": "poli",
+        "example": { "japanese": "映画を見ました", "romanji": "Eiga o mimashita", "french": "J'ai vu un film" }
+      },
+      "past_casual": {
+        "japanese": "見た",
+        "romanji": "Mita",
+        "french": "J'ai vu (familier)",
+        "register": "familier",
+        "example": { "japanese": "あの映画見た？", "romanji": "Ano eiga mita?", "french": "T'as vu ce film ?" }
+      },
+      "negative_polite": {
+        "japanese": "見ません",
+        "romanji": "Mimasen",
+        "french": "Je ne regarde pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "テレビは見ません", "romanji": "Terebi wa mimasen", "french": "Je ne regarde pas la télé" }
+      },
+      "negative_casual": {
+        "japanese": "見ない",
+        "romanji": "Minai",
+        "french": "Je ne regarde pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "あんまり見ない", "romanji": "Anmari minai", "french": "Je ne regarde pas trop" }
+      },
+      "want": {
+        "japanese": "見たい",
+        "romanji": "Mitai",
+        "french": "Je veux voir",
+        "register": "neutre",
+        "example": { "japanese": "桜見たい", "romanji": "Sakura mitai", "french": "Je veux voir les cerisiers" }
+      },
+      "progressive": {
+        "japanese": "見てる",
+        "romanji": "Miteru",
+        "french": "Je suis en train de regarder",
+        "register": "familier",
+        "example": { "japanese": "今、動画見てる", "romanji": "Ima, dōga miteru", "french": "Là, je regarde une vidéo" }
+      },
+      "permission": {
+        "japanese": "見てもいい？",
+        "romanji": "Mite mo ii?",
+        "french": "Je peux regarder ?",
+        "register": "neutre",
+        "example": { "japanese": "これ見てもいい？", "romanji": "Kore mite mo ii?", "french": "Je peux regarder ça ?" }
+      },
+      "potential": {
+        "japanese": "見られる",
+        "romanji": "Mirareru",
+        "french": "Pouvoir voir",
+        "register": "neutre",
+        "example": { "japanese": "ここから富士山見られる", "romanji": "Koko kara Fujisan mirareru", "french": "On peut voir le mont Fuji d'ici" }
+      },
+      "imperative": {
+        "japanese": "見ろ",
+        "romanji": "Miro",
+        "french": "Regarde !",
+        "register": "familier",
+        "example": { "japanese": "あれ見ろ！", "romanji": "Are miro!", "french": "Regarde ça !" }
+      },
+      "try": {
+        "japanese": "見てみる",
+        "romanji": "Mite miru",
+        "french": "Essayer de regarder",
+        "register": "neutre",
+        "example": { "japanese": "この映画見てみる？", "romanji": "Kono eiga mite miru?", "french": "Tu veux essayer de regarder ce film ?" }
+      }
+    }
+  },
+  "suru": {
+    "japanese": "する",
+    "romanji": "Suru",
+    "french": "Faire",
+    "forms": {
+      "past_polite": {
+        "japanese": "しました",
+        "romanji": "Shimashita",
+        "french": "J'ai fait (poli)",
+        "register": "poli",
+        "example": { "japanese": "勉強しました", "romanji": "Benkyō shimashita", "french": "J'ai étudié" }
+      },
+      "past_casual": {
+        "japanese": "した",
+        "romanji": "Shita",
+        "french": "J'ai fait (familier)",
+        "register": "familier",
+        "example": { "japanese": "昨日何した？", "romanji": "Kinō nani shita?", "french": "T'as fait quoi hier ?" }
+      },
+      "negative_polite": {
+        "japanese": "しません",
+        "romanji": "Shimasen",
+        "french": "Je ne fais pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "運動はしません", "romanji": "Undō wa shimasen", "french": "Je ne fais pas de sport" }
+      },
+      "negative_casual": {
+        "japanese": "しない",
+        "romanji": "Shinai",
+        "french": "Je ne fais pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "今日は何もしない", "romanji": "Kyō wa nanimo shinai", "french": "Aujourd'hui je ne fais rien" }
+      },
+      "want": {
+        "japanese": "したい",
+        "romanji": "Shitai",
+        "french": "Je veux faire",
+        "register": "neutre",
+        "example": { "japanese": "旅行したい", "romanji": "Ryokō shitai", "french": "Je veux voyager" }
+      },
+      "progressive": {
+        "japanese": "してる",
+        "romanji": "Shiteru",
+        "french": "Je suis en train de faire",
+        "register": "familier",
+        "example": { "japanese": "今、仕事してる", "romanji": "Ima, shigoto shiteru", "french": "Là, je travaille" }
+      },
+      "permission": {
+        "japanese": "してもいい？",
+        "romanji": "Shite mo ii?",
+        "french": "Je peux faire ?",
+        "register": "neutre",
+        "example": { "japanese": "写真撮ってもいい？", "romanji": "Shashin totte mo ii?", "french": "Je peux prendre une photo ?" }
+      },
+      "potential": {
+        "japanese": "できる",
+        "romanji": "Dekiru",
+        "french": "Pouvoir faire",
+        "register": "neutre",
+        "example": { "japanese": "料理できる？", "romanji": "Ryōri dekiru?", "french": "Tu sais cuisiner ?" }
+      },
+      "imperative": {
+        "japanese": "しろ",
+        "romanji": "Shiro",
+        "french": "Fais !",
+        "register": "familier",
+        "example": { "japanese": "早くしろ！", "romanji": "Hayaku shiro!", "french": "Dépêche-toi !" }
+      },
+      "try": {
+        "japanese": "してみる",
+        "romanji": "Shite miru",
+        "french": "Essayer de faire",
+        "register": "neutre",
+        "example": { "japanese": "やってみる！", "romanji": "Yatte miru!", "french": "Je vais essayer !" }
+      }
+    }
+  },
+  "hanasu": {
+    "japanese": "話す",
+    "romanji": "Hanasu",
+    "french": "Parler",
+    "forms": {
+      "past_polite": {
+        "japanese": "話しました",
+        "romanji": "Hanashimashita",
+        "french": "J'ai parlé (poli)",
+        "register": "poli",
+        "example": { "japanese": "先生と話しました", "romanji": "Sensei to hanashimashita", "french": "J'ai parlé avec le professeur" }
+      },
+      "past_casual": {
+        "japanese": "話した",
+        "romanji": "Hanashita",
+        "french": "J'ai parlé (familier)",
+        "register": "familier",
+        "example": { "japanese": "さっき話した", "romanji": "Sakki hanashita", "french": "J'en ai parlé tout à l'heure" }
+      },
+      "negative_polite": {
+        "japanese": "話しません",
+        "romanji": "Hanashimasen",
+        "french": "Je ne parle pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "中国語は話しません", "romanji": "Chūgokugo wa hanashimasen", "french": "Je ne parle pas chinois" }
+      },
+      "negative_casual": {
+        "japanese": "話さない",
+        "romanji": "Hanasanai",
+        "french": "Je ne parle pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "あんまり話さない", "romanji": "Anmari hanasanai", "french": "Je ne parle pas beaucoup" }
+      },
+      "want": {
+        "japanese": "話したい",
+        "romanji": "Hanashitai",
+        "french": "Je veux parler",
+        "register": "neutre",
+        "example": { "japanese": "日本語で話したい", "romanji": "Nihongo de hanashitai", "french": "Je veux parler en japonais" }
+      },
+      "progressive": {
+        "japanese": "話してる",
+        "romanji": "Hanashiteru",
+        "french": "Je suis en train de parler",
+        "register": "familier",
+        "example": { "japanese": "今、電話で話してる", "romanji": "Ima, denwa de hanashiteru", "french": "Là, je suis au téléphone" }
+      },
+      "permission": {
+        "japanese": "話してもいい？",
+        "romanji": "Hanashite mo ii?",
+        "french": "Je peux parler ?",
+        "register": "neutre",
+        "example": { "japanese": "ちょっと話してもいい？", "romanji": "Chotto hanashite mo ii?", "french": "Je peux te parler un moment ?" }
+      },
+      "potential": {
+        "japanese": "話せる",
+        "romanji": "Hanaseru",
+        "french": "Pouvoir parler",
+        "register": "neutre",
+        "example": { "japanese": "英語話せる？", "romanji": "Eigo hanaseru?", "french": "Tu parles anglais ?" }
+      },
+      "imperative": {
+        "japanese": "話せ",
+        "romanji": "Hanase",
+        "french": "Parle !",
+        "register": "familier",
+        "example": { "japanese": "本当のこと話せ！", "romanji": "Hontō no koto hanase!", "french": "Dis la vérité !" }
+      },
+      "try": {
+        "japanese": "話してみる",
+        "romanji": "Hanashite miru",
+        "french": "Essayer de parler",
+        "register": "neutre",
+        "example": { "japanese": "日本語で話してみる", "romanji": "Nihongo de hanashite miru", "french": "Je vais essayer de parler en japonais" }
+      }
+    }
+  },
+  "wakaru": {
+    "japanese": "わかる",
+    "romanji": "Wakaru",
+    "french": "Comprendre",
+    "forms": {
+      "past_polite": {
+        "japanese": "わかりました",
+        "romanji": "Wakarimashita",
+        "french": "J'ai compris (poli)",
+        "register": "poli",
+        "example": { "japanese": "はい、わかりました", "romanji": "Hai, wakarimashita", "french": "Oui, j'ai compris" }
+      },
+      "past_casual": {
+        "japanese": "わかった",
+        "romanji": "Wakatta",
+        "french": "J'ai compris (familier)",
+        "register": "familier",
+        "example": { "japanese": "あ、わかった！", "romanji": "A, wakatta!", "french": "Ah, j'ai compris !" }
+      },
+      "negative_polite": {
+        "japanese": "わかりません",
+        "romanji": "Wakarimasen",
+        "french": "Je ne comprends pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "すみません、わかりません", "romanji": "Sumimasen, wakarimasen", "french": "Excusez-moi, je ne comprends pas" }
+      },
+      "negative_casual": {
+        "japanese": "わからない",
+        "romanji": "Wakaranai",
+        "french": "Je ne comprends pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "全然わからない", "romanji": "Zenzen wakaranai", "french": "Je ne comprends rien du tout" }
+      },
+      "want": {
+        "japanese": "わかりたい",
+        "romanji": "Wakaritai",
+        "french": "Je veux comprendre",
+        "register": "neutre",
+        "example": { "japanese": "もっとわかりたい", "romanji": "Motto wakaritai", "french": "Je veux mieux comprendre" }
+      },
+      "progressive": {
+        "japanese": "わかってる",
+        "romanji": "Wakatteru",
+        "french": "Je sais / je comprends déjà",
+        "register": "familier",
+        "example": { "japanese": "うん、わかってる", "romanji": "Un, wakatteru", "french": "Oui, je sais" }
+      },
+      "permission": {
+        "japanese": "わかってもいい？",
+        "romanji": "Wakatte mo ii?",
+        "french": "Je peux comprendre ?",
+        "register": "neutre",
+        "example": { "japanese": "これわかってもいい？", "romanji": "Kore wakatte mo ii?", "french": "C'est bon si je comprends ça ?" }
+      },
+      "potential": {
+        "japanese": "わかれる",
+        "romanji": "Wakareru",
+        "french": "Pouvoir comprendre",
+        "register": "neutre",
+        "example": { "japanese": "日本語わかれる？", "romanji": "Nihongo wakareru?", "french": "Tu arrives à comprendre le japonais ?" }
+      },
+      "imperative": {
+        "japanese": "わかれ",
+        "romanji": "Wakare",
+        "french": "Comprends !",
+        "register": "familier",
+        "example": { "japanese": "いい加減わかれ！", "romanji": "Iikagen wakare!", "french": "Comprends à la fin !" }
+      },
+      "try": {
+        "japanese": "わかってみる",
+        "romanji": "Wakatte miru",
+        "french": "Essayer de comprendre",
+        "register": "neutre",
+        "example": { "japanese": "自分でわかってみる", "romanji": "Jibun de wakatte miru", "french": "Je vais essayer de comprendre par moi-même" }
+      }
+    }
+  },
+  "matsu": {
+    "japanese": "待つ",
+    "romanji": "Matsu",
+    "french": "Attendre",
+    "forms": {
+      "past_polite": {
+        "japanese": "待ちました",
+        "romanji": "Machimashita",
+        "french": "J'ai attendu (poli)",
+        "register": "poli",
+        "example": { "japanese": "30分待ちました", "romanji": "Sanjuppun machimashita", "french": "J'ai attendu 30 minutes" }
+      },
+      "past_casual": {
+        "japanese": "待った",
+        "romanji": "Matta",
+        "french": "J'ai attendu (familier)",
+        "register": "familier",
+        "example": { "japanese": "めっちゃ待った", "romanji": "Meccha matta", "french": "J'ai trop attendu" }
+      },
+      "negative_polite": {
+        "japanese": "待ちません",
+        "romanji": "Machimasen",
+        "french": "Je n'attends pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "もう待ちません", "romanji": "Mō machimasen", "french": "Je n'attends plus" }
+      },
+      "negative_casual": {
+        "japanese": "待たない",
+        "romanji": "Matanai",
+        "french": "Je n'attends pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "もう待たない", "romanji": "Mō matanai", "french": "J'attends plus" }
+      },
+      "want": {
+        "japanese": "待ちたい",
+        "romanji": "Machitai",
+        "french": "Je veux attendre",
+        "register": "neutre",
+        "example": { "japanese": "ここで待ちたい", "romanji": "Koko de machitai", "french": "Je veux attendre ici" }
+      },
+      "progressive": {
+        "japanese": "待ってる",
+        "romanji": "Matteru",
+        "french": "J'attends / je suis en train d'attendre",
+        "register": "familier",
+        "example": { "japanese": "外で待ってる", "romanji": "Soto de matteru", "french": "J'attends dehors" }
+      },
+      "permission": {
+        "japanese": "待ってもいい？",
+        "romanji": "Matte mo ii?",
+        "french": "Je peux attendre ?",
+        "register": "neutre",
+        "example": { "japanese": "ここで待ってもいい？", "romanji": "Koko de matte mo ii?", "french": "Je peux attendre ici ?" }
+      },
+      "potential": {
+        "japanese": "待てる",
+        "romanji": "Materu",
+        "french": "Pouvoir attendre",
+        "register": "neutre",
+        "example": { "japanese": "あと10分待てる？", "romanji": "Ato juppun materu?", "french": "Tu peux attendre encore 10 minutes ?" }
+      },
+      "imperative": {
+        "japanese": "待て",
+        "romanji": "Mate",
+        "french": "Attends !",
+        "register": "familier",
+        "example": { "japanese": "ちょっと待て！", "romanji": "Chotto mate!", "french": "Attends un peu !" }
+      },
+      "try": {
+        "japanese": "待ってみる",
+        "romanji": "Matte miru",
+        "french": "Essayer d'attendre",
+        "register": "neutre",
+        "example": { "japanese": "もうちょっと待ってみる", "romanji": "Mō chotto matte miru", "french": "Je vais essayer d'attendre encore un peu" }
+      }
+    }
+  },
+  "kau": {
+    "japanese": "買う",
+    "romanji": "Kau",
+    "french": "Acheter",
+    "forms": {
+      "past_polite": {
+        "japanese": "買いました",
+        "romanji": "Kaimashita",
+        "french": "J'ai acheté (poli)",
+        "register": "poli",
+        "example": { "japanese": "お土産買いました", "romanji": "Omiyage kaimashita", "french": "J'ai acheté des souvenirs" }
+      },
+      "past_casual": {
+        "japanese": "買った",
+        "romanji": "Katta",
+        "french": "J'ai acheté (familier)",
+        "register": "familier",
+        "example": { "japanese": "新しい靴買った", "romanji": "Atarashii kutsu katta", "french": "J'ai acheté de nouvelles chaussures" }
+      },
+      "negative_polite": {
+        "japanese": "買いません",
+        "romanji": "Kaimasen",
+        "french": "Je n'achète pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "今日は買いません", "romanji": "Kyō wa kaimasen", "french": "Aujourd'hui je n'achète pas" }
+      },
+      "negative_casual": {
+        "japanese": "買わない",
+        "romanji": "Kawanai",
+        "french": "Je n'achète pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "高いから買わない", "romanji": "Takai kara kawanai", "french": "C'est cher donc j'achète pas" }
+      },
+      "want": {
+        "japanese": "買いたい",
+        "romanji": "Kaitai",
+        "french": "Je veux acheter",
+        "register": "neutre",
+        "example": { "japanese": "これ買いたい", "romanji": "Kore kaitai", "french": "Je veux acheter ça" }
+      },
+      "progressive": {
+        "japanese": "買ってる",
+        "romanji": "Katteru",
+        "french": "Je suis en train d'acheter / j'achète souvent",
+        "register": "familier",
+        "example": { "japanese": "毎週買ってる", "romanji": "Maishū katteru", "french": "J'en achète toutes les semaines" }
+      },
+      "permission": {
+        "japanese": "買ってもいい？",
+        "romanji": "Katte mo ii?",
+        "french": "Je peux acheter ?",
+        "register": "neutre",
+        "example": { "japanese": "これ買ってもいい？", "romanji": "Kore katte mo ii?", "french": "Je peux acheter ça ?" }
+      },
+      "potential": {
+        "japanese": "買える",
+        "romanji": "Kaeru",
+        "french": "Pouvoir acheter",
+        "register": "neutre",
+        "example": { "japanese": "ここで買える？", "romanji": "Koko de kaeru?", "french": "On peut acheter ici ?" }
+      },
+      "imperative": {
+        "japanese": "買え",
+        "romanji": "Kae",
+        "french": "Achète !",
+        "register": "familier",
+        "example": { "japanese": "早く買え！", "romanji": "Hayaku kae!", "french": "Achète vite !" }
+      },
+      "try": {
+        "japanese": "買ってみる",
+        "romanji": "Katte miru",
+        "french": "Essayer d'acheter",
+        "register": "neutre",
+        "example": { "japanese": "一回買ってみる", "romanji": "Ikkai katte miru", "french": "Je vais essayer d'en acheter une fois" }
+      }
+    }
+  },
+  "neru": {
+    "japanese": "寝る",
+    "romanji": "Neru",
+    "french": "Dormir / Se coucher",
+    "forms": {
+      "past_polite": {
+        "japanese": "寝ました",
+        "romanji": "Nemashita",
+        "french": "J'ai dormi (poli)",
+        "register": "poli",
+        "example": { "japanese": "よく寝ました", "romanji": "Yoku nemashita", "french": "J'ai bien dormi" }
+      },
+      "past_casual": {
+        "japanese": "寝た",
+        "romanji": "Neta",
+        "french": "J'ai dormi (familier)",
+        "register": "familier",
+        "example": { "japanese": "昨日早く寝た", "romanji": "Kinō hayaku neta", "french": "Hier je me suis couché tôt" }
+      },
+      "negative_polite": {
+        "japanese": "寝ません",
+        "romanji": "Nemasen",
+        "french": "Je ne dors pas (poli)",
+        "register": "poli",
+        "example": { "japanese": "まだ寝ません", "romanji": "Mada nemasen", "french": "Je ne dors pas encore" }
+      },
+      "negative_casual": {
+        "japanese": "寝ない",
+        "romanji": "Nenai",
+        "french": "Je ne dors pas (familier)",
+        "register": "familier",
+        "example": { "japanese": "今日は寝ない", "romanji": "Kyō wa nenai", "french": "Aujourd'hui je ne dors pas" }
+      },
+      "want": {
+        "japanese": "寝たい",
+        "romanji": "Netai",
+        "french": "Je veux dormir",
+        "register": "neutre",
+        "example": { "japanese": "めっちゃ寝たい", "romanji": "Meccha netai", "french": "Je veux trop dormir" }
+      },
+      "progressive": {
+        "japanese": "寝てる",
+        "romanji": "Neteru",
+        "french": "Il dort / en train de dormir",
+        "register": "familier",
+        "example": { "japanese": "まだ寝てる", "romanji": "Mada neteru", "french": "Il dort encore" }
+      },
+      "permission": {
+        "japanese": "寝てもいい？",
+        "romanji": "Nete mo ii?",
+        "french": "Je peux dormir ?",
+        "register": "neutre",
+        "example": { "japanese": "もう寝てもいい？", "romanji": "Mō nete mo ii?", "french": "Je peux aller dormir ?" }
+      },
+      "potential": {
+        "japanese": "寝られる",
+        "romanji": "Nerareru",
+        "french": "Pouvoir dormir",
+        "register": "neutre",
+        "example": { "japanese": "ここで寝られる？", "romanji": "Koko de nerareru?", "french": "On peut dormir ici ?" }
+      },
+      "imperative": {
+        "japanese": "寝ろ",
+        "romanji": "Nero",
+        "french": "Dors !",
+        "register": "familier",
+        "example": { "japanese": "早く寝ろ！", "romanji": "Hayaku nero!", "french": "Dors vite !" }
+      },
+      "try": {
+        "japanese": "寝てみる",
+        "romanji": "Nete miru",
+        "french": "Essayer de dormir",
+        "register": "neutre",
+        "example": { "japanese": "ちょっと寝てみる", "romanji": "Chotto nete miru", "french": "Je vais essayer de dormir un peu" }
+      }
+    }
+  }
+}

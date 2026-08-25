@@ -1,3 +1,3 @@
 enum QuizMode { mix, frenchToJapanese, japaneseToFrench }
 
-enum AppRoute { home, training }
+enum AppRoute { home, training, verbs }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../enums/quiz_mode.dart';
 import '../models/phrase.dart';
+import '../screens/verb_game_page.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -106,7 +107,11 @@ class AppDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    currentRoute == AppRoute.home ? 'Accueil' : 'Entraînement',
+                    currentRoute == AppRoute.home
+                        ? 'Accueil'
+                        : currentRoute == AppRoute.training
+                        ? 'Entraînement'
+                        : 'Verbes',
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.75),
                       fontSize: 13,
@@ -138,6 +143,23 @@ class AppDrawer extends StatelessWidget {
                 : () {
                     Navigator.pop(context);
                     onNavigateToTraining?.call();
+                  },
+          ),
+          _drawerItem(
+            context: context,
+            icon: Icons.translate,
+            label: 'Verbes',
+            isActive: currentRoute == AppRoute.verbs,
+            enabled: true,
+            onTap: currentRoute == AppRoute.verbs
+                ? () => Navigator.pop(context)
+                : () {
+                    Navigator.pop(context);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const VerbGamePage(),
+                      ),
+                    );
                   },
           ),
         ],
