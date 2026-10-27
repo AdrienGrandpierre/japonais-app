@@ -19,6 +19,14 @@ class VerbGamePage extends StatefulWidget {
 }
 
 class _VerbGamePageState extends State<VerbGamePage> {
+  // Familles de formes faciles à confondre, utilisées comme distracteurs en mode normal
+  static const _formFamilies = [
+    ['past_polite', 'past_casual', 'negative_polite', 'negative_casual'],
+    ['progressive', 'permission', 'try'],
+    ['want', 'potential', 'imperative'],
+  ];
+  static final _registerSuffix = RegExp(r'\s*\((poli|familier)\)$');
+
   final Random _random = Random();
   final FlutterTts _tts = FlutterTts();
 
@@ -90,12 +98,10 @@ class _VerbGamePageState extends State<VerbGamePage> {
         distractors = otherVerbs.take(3).map(_verbChoice).toList();
       case VerbDifficulty.normal:
         correct = _formChoice(verb, target);
-        final otherKeys = formKeys.where((k) => k != targetKey).toList()
-          ..shuffle(_random);
-        distractors = otherKeys
-            .take(3)
-            .map((k) => _formChoice(verb, verb.forms[k]!))
-            .toList();
+        distractors = _pickDistractorKeys(
+          verb,
+          targetKey,
+        ).map((k) => _formChoice(verb, verb.forms[k]!)).toList();
       case VerbDifficulty.hard:
         correct = _formChoice(verb, target);
         distractors = otherVerbs
@@ -114,6 +120,24 @@ class _VerbGamePageState extends State<VerbGamePage> {
       _correctIndex = choices.indexOf(correct);
       _selectedIndex = null;
     });
+  }
+
+  List<String> _pickDistractorKeys(Verb verb, String targetKey) {
+    final family = _formFamilies.firstWhere(
+      (f) => f.contains(targetKey),
+      orElse: () => const [],
+    );
+    final close =
+        family
+            .where((k) => k != targetKey && verb.forms.containsKey(k))
+            .toList()
+          ..shuffle(_random);
+    final others =
+        verb.forms.keys
+            .where((k) => k != targetKey && !close.contains(k))
+            .toList()
+          ..shuffle(_random);
+    return [...close, ...others].take(3).toList();
   }
 
   _VerbChoice _verbChoice(Verb verb) => _VerbChoice(
@@ -200,33 +224,85 @@ class _VerbGamePageState extends State<VerbGamePage> {
     );
   }
 
-  Widget _buildFormBadge(ThemeData theme) {
+  Widget _buildChip(String label, Color color) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withValues(alpha: 0.15),
+        color: color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        _formLabel(_targetForm.key),
+        label,
         style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: theme.colorScheme.onPrimaryContainer,
+          color: color,
         ),
       ),
     );
   }
 
+  Widget _buildFormBadge(ThemeData theme) {
+    final register = _targetForm.register;
+    final registerColor = switch (register) {
+      'poli' => Colors.blue.shade700,
+      'familier' => Colors.deepOrange.shade700,
+      _ => null,
+    };
+    return Wrap(
+      spacing: 8,
+      alignment: WrapAlignment.center,
+      children: [
+        _buildChip(
+          _formLabel(_targetForm.key).replaceAll(_registerSuffix, ''),
+          theme.colorScheme.primary,
+        ),
+        if (registerColor != null)
+          _buildChip(
+            '${register[0].toUpperCase()}${register.substring(1)}',
+            registerColor,
+          ),
+      ],
+    );
+  }
+
   Widget _buildConjugatedFrench(ThemeData theme) {
     return Text(
-      '« ${_targetForm.french} »',
+      '« ${_targetForm.french.replaceAll(_registerSuffix, '')} »',
       style: TextStyle(
         fontSize: 26,
         fontWeight: FontWeight.bold,
         color: theme.colorScheme.onPrimaryContainer,
       ),
       textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _buildCorrectAnswer(_VerbChoice choice, ThemeData theme) {
+    final word = choice.japanese;
+    final base = _currentVerb.japanese;
+    var stem = 0;
+    if (_difficulty != VerbDifficulty.easy) {
+      while (stem < word.length &&
+          stem < base.length &&
+          word[stem] == base[stem]) {
+        stem++;
+      }
+    } else {
+      stem = word.length;
+    }
+    return Text.rich(
+      TextSpan(
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        children: [
+          TextSpan(text: word.substring(0, stem)),
+          TextSpan(
+            text: word.substring(stem),
+            style: TextStyle(color: theme.colorScheme.primary),
+          ),
+          TextSpan(text: '  ${choice.romanji}'),
+        ],
+      ),
     );
   }
 
@@ -241,11 +317,6 @@ class _VerbGamePageState extends State<VerbGamePage> {
       child: Column(
         children: switch (_difficulty) {
           VerbDifficulty.easy => [
-            Text(
-              'Quel est ce verbe ?',
-              style: TextStyle(fontSize: 14, color: onContainer),
-            ),
-            const SizedBox(height: 8),
             Text(
               _currentVerb.french,
               style: TextStyle(
@@ -264,32 +335,38 @@ class _VerbGamePageState extends State<VerbGamePage> {
               children: [
                 Text(
                   _currentVerb.japanese,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: onContainer,
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
                 Text(
                   _currentVerb.romanji,
-                  style: TextStyle(fontSize: 18, color: onContainer),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: onContainer.withValues(alpha: 0.75),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 4),
             Text(
               _currentVerb.french,
-              style: TextStyle(fontSize: 16, color: onContainer),
+              style: TextStyle(
+                fontSize: 14,
+                color: onContainer.withValues(alpha: 0.75),
+              ),
             ),
-            const SizedBox(height: 8),
-            _buildFormBadge(theme),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             _buildConjugatedFrench(theme),
+            const SizedBox(height: 10),
+            _buildFormBadge(theme),
           ],
           VerbDifficulty.hard => [
-            _buildFormBadge(theme),
-            const SizedBox(height: 12),
             _buildConjugatedFrench(theme),
+            const SizedBox(height: 10),
+            _buildFormBadge(theme),
           ],
         },
       ),
@@ -476,13 +553,7 @@ class _VerbGamePageState extends State<VerbGamePage> {
                                     ],
                                   ),
                                   const SizedBox(height: 10),
-                                  Text(
-                                    '${correctChoice.japanese}  ${correctChoice.romanji}',
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                  _buildCorrectAnswer(correctChoice, theme),
                                   if (_difficulty == VerbDifficulty.easy)
                                     Text(
                                       _currentVerb.french,

@@ -58,9 +58,9 @@ lib/
 ## Logique du jeu de verbes (VerbGamePage)
 - **Format** : QCM à 4 choix (japonais + romanji), sélecteur de difficulté fixé en haut de l'écran (ChoiceChips, hors du scroll)
 - **Facile** : affiche l'infinitif français (ex: "Venir") → trouver le verbe brut parmi 4 verbes
-- **Normal** (défaut) : affiche le verbe (japonais + romanji sur la même ligne, français en dessous) + badge de forme + phrase conjuguée en français en grand → distracteurs = autres formes du même verbe
-- **Difficile** : affiche seulement le badge de forme + phrase conjuguée en français → 4 verbes différents à la même forme
-- **Après réponse** : vert/rouge sur les choix, détail de chaque choix, feedback avec la bonne réponse et l'exemple (sauf en facile), bouton "Suivant"
+- **Normal** (défaut) : verbe en petit (japonais + romanji sur la même ligne, français en dessous) + phrase conjuguée en français en grand (sans « (poli) »/« (familier) ») + chips forme et registre coloré (poli bleu, familier orange, neutre masqué) → distracteurs pris d'abord dans la même famille de formes (`_formFamilies` : passé/négatif poli/familier, formes en -te, vouloir/potentiel/impératif)
+- **Difficile** : phrase conjuguée en français + chips forme/registre seulement → 4 verbes différents à la même forme
+- **Après réponse** : vert/rouge sur les choix, détail de chaque choix, feedback avec la bonne réponse (terminaison colorée par rapport à la forme dictionnaire, sauf en facile) et l'exemple (sauf en facile), bouton "Suivant"
 - **TTS** : prononce la bonne réponse quand l'utilisateur répond juste
 - Pas de score persisté pour les verbes
 
