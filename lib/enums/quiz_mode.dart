@@ -1,5 +1,11 @@
 enum QuizMode { mix, frenchToJapanese, japaneseToFrench }
 
-enum AppRoute { home, training, verbs }
+enum VerbDifficulty {
+  easy('Facile'),
+  normal('Normal'),
+  hard('Difficile');
 
-enum VerbDifficulty { easy, normal, hard }
+  const VerbDifficulty(this.label);
+
+  final String label;
+}

@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-import '../enums/quiz_mode.dart';
-import '../models/phrase.dart';
-import '../widgets/app_drawer.dart';
-import '../widgets/phrase_card.dart';
+import '../../models/phrase.dart';
+import '../../widgets/phrase_card.dart';
 
-class AllPhrasesPage extends StatefulWidget {
-  const AllPhrasesPage({
+class PhraseListPage extends StatefulWidget {
+  const PhraseListPage({
     super.key,
     required this.phrases,
-    this.phrasePerformance = const {},
+    required this.performance,
   });
 
   final List<Phrase> phrases;
-  final Map<String, int> phrasePerformance;
+  final Map<String, int> performance;
 
   @override
-  State<AllPhrasesPage> createState() => _AllPhrasesPageState();
+  State<PhraseListPage> createState() => _PhraseListPageState();
 }
 
-class _AllPhrasesPageState extends State<AllPhrasesPage> {
+class _PhraseListPageState extends State<PhraseListPage>
+    with AutomaticKeepAliveClientMixin {
   final FlutterTts _tts = FlutterTts();
   final TextEditingController _searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   String _searchQuery = '';
   final Map<String, GlobalKey> _categoryKeys = {};
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -52,7 +54,7 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
   }
 
   Widget _buildPhraseCard(BuildContext context, Phrase phrase) {
-    final score = widget.phrasePerformance[phrase.key] ?? 0;
+    final score = widget.performance[phrase.key] ?? 0;
     return PhraseCard(
       phrase: phrase,
       score: score,
@@ -62,6 +64,7 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final query = _searchQuery.toLowerCase().trim();
     final filteredPhrases = query.isEmpty
         ? widget.phrases
@@ -98,70 +101,59 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
         )
         .toList();
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Entraînement')),
-      drawer: AppDrawer(
-        phrases: widget.phrases,
-        currentRoute: AppRoute.training,
-        phrasePerformance: widget.phrasePerformance,
-      ),
-      body: SafeArea(
-        bottom: true,
-        top: false,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _searchController,
-                      onChanged: (value) =>
-                          setState(() => _searchQuery = value),
-                      decoration: InputDecoration(
-                        hintText: 'Rechercher une traduction...',
-                        prefixIcon: const Icon(Icons.search),
-                        suffixIcon: _searchQuery.isNotEmpty
-                            ? IconButton(
-                                icon: const Icon(Icons.clear),
-                                onPressed: () {
-                                  _searchController.clear();
-                                  setState(() => _searchQuery = '');
-                                },
-                              )
-                            : null,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                        ),
+    return SafeArea(
+      bottom: true,
+      top: false,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) => setState(() => _searchQuery = value),
+                    decoration: InputDecoration(
+                      hintText: 'Rechercher une traduction...',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchQuery.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() => _searchQuery = '');
+                              },
+                            )
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 10),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  _buildCategoryMenuButton(grouped.keys.toList()),
-                ],
-              ),
+                ),
+                const SizedBox(width: 8),
+                _buildCategoryMenuButton(grouped.keys.toList()),
+              ],
             ),
-            Expanded(
-              child: phraseList.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'Aucune phrase trouvée.',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    )
-                  : ListView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                      cacheExtent: 100000,
-                      children: phraseList,
+          ),
+          Expanded(
+            child: phraseList.isEmpty
+                ? const Center(
+                    child: Text(
+                      'Aucune phrase trouvée.',
+                      style: TextStyle(color: Colors.grey),
                     ),
-            ),
-          ],
-        ),
+                  )
+                : ListView(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                    cacheExtent: 100000,
+                    children: phraseList,
+                  ),
+          ),
+        ],
       ),
     );
   }
@@ -183,9 +175,9 @@ class _AllPhrasesPageState extends State<AllPhrasesPage> {
   void _scrollToCategory(String category) {
     // Wait for the popup menu's close animation so the key's context is stable.
     Future.delayed(const Duration(milliseconds: 250), () {
-      final key = _categoryKeys[category];
-      final ctx = key?.currentContext;
-      if (ctx != null) {
+      if (!mounted) return;
+      final ctx = _categoryKeys[category]?.currentContext;
+      if (ctx != null && ctx.mounted) {
         Scrollable.ensureVisible(
           ctx,
           duration: const Duration(milliseconds: 300),

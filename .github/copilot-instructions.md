@@ -1,9 +1,9 @@
-# Japonais App — Contexte projet pour Copilot
+# Hanasō — Contexte projet pour Copilot
 
 ## Vue d'ensemble
 Application Flutter d'apprentissage du japonais avec quiz de phrases, jeu de verbes, et consultation complète des phrases.
 L'objectif principal est d'apprendre à parler un japonais fluide, très orienté oral et conversation courante.
-L'interface est entièrement en français. Le nom affiché est "1mois pour parler japonais".
+L'interface est entièrement en français. Le nom affiché est "Hanasō".
 
 ## Stack technique
 - **Framework** : Flutter (Dart SDK ^3.11.4, Material 3)
@@ -13,23 +13,29 @@ L'interface est entièrement en français. Le nom affiché est "1mois pour parle
 ## Architecture des fichiers
 ```
 lib/
-├── main.dart              # Point d'entrée, MaterialApp, thème bleu
+├── main.dart              # Point d'entrée, MaterialApp (home: MainShell), thème bleu
 ├── data/
+│   ├── performance_repository.dart  # Charge/sauve les scores des phrases (SharedPreferences)
 │   ├── phrase_repository.dart    # Charge phrases.json depuis les assets
 │   └── verb_repository.dart      # Charge verbs.json depuis les assets
 ├── enums/
+│   ├── app_section.dart   # AppSection {home, phrases, verbs} (label + icônes des onglets)
 │   └── quiz_mode.dart     # QuizMode {mix, frenchToJapanese, japaneseToFrench}
-│                          # AppRoute {home, training, verbs}
-│                          # VerbDifficulty {easy, normal, hard}
+│                          # VerbDifficulty {easy, normal, hard} (+ label)
 ├── models/
 │   ├── phrase.dart        # Modèles Phrase et PhraseDialogLine
 │   └── verb.dart          # Modèles Verb, VerbForm, VerbFormExample
 ├── screens/
-│   ├── home_page.dart     # Page quiz (sélection pondérée, score, TTS, modes)
-│   ├── all_phrases_page.dart  # Liste de toutes les phrases avec recherche
-│   └── verb_game_page.dart    # Jeu QCM sur les conjugaisons de verbes
+│   ├── main_shell.dart    # Racine : NavigationBar + IndexedStack, charge phrases + scores une seule fois
+│   ├── home_page.dart     # Accueil : « Réviser maintenant », stats des phrases, raccourcis modules
+│   ├── phrases/
+│   │   ├── phrases_section.dart   # AppBar + TabBar Quiz / Liste, bouton reset des scores
+│   │   ├── phrase_quiz_page.dart  # Onglet Quiz (sélection pondérée, TTS, modes)
+│   │   └── phrase_list_page.dart  # Onglet Liste (recherche, saut par catégorie, scores)
+│   └── verbs/
+│       ├── verbs_section.dart     # Charge verbs.json, AppBar + TabBar Facile / Normal / Difficile
+│       └── verb_quiz_page.dart    # QCM sur les conjugaisons (une instance par difficulté)
 └── widgets/
-    ├── app_drawer.dart    # Drawer de navigation (Accueil / Entraînement / Verbes)
     ├── phrase_card.dart   # Carte expansible avec japonais/romanji/français/contexte/dialogue
     └── score_box.dart     # Indicateur visuel du score (-5 à +5, rouge→vert)
 ```
@@ -43,37 +49,45 @@ lib/
 ## Données (assets/verbs.json)
 - Structure : objet JSON avec l'id romanji du verbe comme clé (ex: `"taberu"`, `"iku"`)
 - Chaque verbe contient : `japanese` (forme dictionnaire), `romanji`, `french` (infinitif, ex: "Manger"), `forms` (objet)
-- Clés de forms : `past_polite`, `past_casual`, `negative_polite`, `negative_casual`, `want`, `progressive`, `permission`, `potential`, `imperative`, `try` (libellés FR dans `_formLabel` de VerbGamePage)
+- Clés de forms : `past_polite`, `past_casual`, `negative_polite`, `negative_casual`, `want`, `progressive`, `permission`, `potential`, `imperative`, `try` (libellés FR via `VerbForm.label`)
 - Chaque form contient : `japanese`, `romanji`, `french` (phrase conjuguée, ex: "J'ai mangé (poli)"), `register` (optionnel, défaut: "neutre"), `example` (objet)
 - Chaque example contient : `japanese`, `romanji`, `french`
 
-## Logique du quiz de phrases (HomePage)
+## Logique du quiz de phrases (PhraseQuizPage)
 - **3 modes** : Français→Japonais, Japonais→Français, Mixte
-- **Score** : chaque phrase a un score de -5 à +5 (persisté dans SharedPreferences sous la clé `phrasePerformance`)
+- **Score** : chaque phrase a un score de -5 à +5 (persisté dans SharedPreferences sous la clé `phrasePerformance` via `PerformanceRepository`), détenu par `MainShell` et partagé avec l'Accueil, le Quiz et la Liste
 - **Sélection pondérée** : poids = `(5 - score).clamp(1, 10)` — les phrases mal maîtrisées apparaissent plus souvent
 - **Clé unique phrase** : `"$japanese|$romanji|$french"`
-- Boutons "Réussi" (+1) / "Raté" (-1) après avoir dévoilé la réponse
+- Boutons "Réussi" / "Raté" après avoir dévoilé la réponse (score mis à jour uniquement en mode Français→Japonais) ; le score est une série : réussi → `max(score, 0) + 1`, raté → `min(score, 0) - 1`
 - TTS japonais (vitesse 0.45, pitch 1.0)
 
-## Logique du jeu de verbes (VerbGamePage)
-- **Format** : QCM à 4 choix (japonais + romanji), sélecteur de difficulté fixé en haut de l'écran (ChoiceChips, hors du scroll)
+## Accueil (HomePage)
+- Carte « Réviser maintenant » : ouvre Phrases › Quiz en Français→Japonais (via `revisionRequest` incrémenté dans MainShell)
+- Stats des phrases : maîtrisées (score ≥ 4 = 4 réussites d'affilée), en cours, à revoir (score ≤ -2 = 2 ratés d'affilée)
+- Raccourcis vers chaque module (générés depuis `AppSection`)
+
+## Logique du quiz de verbes (VerbQuizPage)
+- **Format** : QCM à 4 choix (japonais + romanji) ; la difficulté est choisie via les onglets de l'AppBar (`VerbDifficulty.label`, Normal par défaut) ; contenu scrollable, bouton « Suivant » (ElevatedButton pleine largeur) fixé en bas, désactivé tant qu'on n'a pas répondu
 - **Facile** : affiche l'infinitif français (ex: "Venir") → trouver le verbe brut parmi 4 verbes
 - **Normal** (défaut) : verbe en petit (japonais + romanji sur la même ligne, français en dessous) + phrase conjuguée en français en grand (sans « (poli) »/« (familier) ») + chips forme et registre coloré (poli bleu, familier orange, neutre masqué) → distracteurs pris d'abord dans la même famille de formes (`_formFamilies` : passé/négatif poli/familier, formes en -te, vouloir/potentiel/impératif)
 - **Difficile** : phrase conjuguée en français + chips forme/registre seulement → 4 verbes différents à la même forme
-- **Après réponse** : vert/rouge sur les choix, détail de chaque choix, feedback avec la bonne réponse (terminaison colorée par rapport à la forme dictionnaire, sauf en facile) et l'exemple (sauf en facile), bouton "Suivant"
+- **Après réponse** : vert/rouge sur les choix, détail de chaque choix, feedback (scroll automatique) avec la bonne réponse (terminaison colorée par rapport à la forme dictionnaire, sauf en facile) et l'exemple (sauf en facile)
 - **TTS** : prononce la bonne réponse quand l'utilisateur répond juste
 - Pas de score persisté pour les verbes
 
-## Navigation et Routes
-- **AppRoute enum** : `home` (HomePage), `training` (AllPhrasesPage), `verbs` (VerbGamePage)
-- **AppDrawer** : affiche les 3 options de navigation, highlight l'écran actif
-- **Navigation** : utilise `Navigator.push` avec `MaterialPageRoute`, pas de navigation nommée
+## Navigation
+- **MainShell** : `NavigationBar` en bas + `IndexedStack` (l'état de chaque onglet est conservé)
+- **Onglets** (`AppSection`) : Accueil (défaut) / Phrases / Verbes
+- **Bouton retour** : `PopScope` dans MainShell → revient à l'Accueil depuis un autre onglet, ne quitte l'app que depuis l'Accueil
+- **Phrases** : `TabBar` Quiz / Liste dans l'AppBar ; **Verbes** : `TabBar` Facile / Normal / Difficile (`AutomaticKeepAliveClientMixin` sur les onglets)
+- **Ajouter un module** : nouvelle valeur dans `AppSection` + cas dans `MainShell._buildSection` (+ sous-titre dans `HomePage`) ; max 5 onglets
+- Pas de tiroir, pas de navigation nommée, pas de `Navigator.push` entre modules
 
 ## Conventions de code
 - Dart idiomatique, classes immutables avec `const` constructors
 - Widgets StatelessWidget quand possible, StatefulWidget sinon
-- Pas de state management externe (setState uniquement)
-- Pas de navigation nommée, utilisation de `Navigator.push` avec MaterialPageRoute
+- Pas de state management externe (setState uniquement) ; données partagées remontées dans `MainShell` et passées en paramètres + callbacks
+- Écrans organisés par module dans `screens/<module>/`
 - Commentaires en français si nécessaire
 
 ## Commandes utiles

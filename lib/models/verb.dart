@@ -19,6 +19,19 @@ class VerbFormExample {
 }
 
 class VerbForm {
+  static const _labels = {
+    'past_polite': 'Passé (poli)',
+    'past_casual': 'Passé (familier)',
+    'negative_polite': 'Négatif (poli)',
+    'negative_casual': 'Négatif (familier)',
+    'want': 'Vouloir',
+    'progressive': 'Progressif',
+    'permission': 'Permission',
+    'potential': 'Potentiel',
+    'imperative': 'Impératif',
+    'try': 'Essayer',
+  };
+
   final String key;
   final String japanese;
   final String romanji;
@@ -34,6 +47,8 @@ class VerbForm {
     required this.register,
     required this.example,
   });
+
+  String get label => _labels[key] ?? key;
 
   factory VerbForm.fromJson(String key, Map<String, dynamic> json) {
     return VerbForm(
