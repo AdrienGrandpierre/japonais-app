@@ -29,6 +29,13 @@ class _VerbQuizPageState extends State<VerbQuizPage>
     ['want', 'potential', 'imperative'],
   ];
   static final _registerSuffix = RegExp(r'\s*\((poli|familier)\)$');
+  // Formes les plus utiles à l'oral, montrées en correction du mode facile
+  static const _commonForms = [
+    'past_polite',
+    'negative_polite',
+    'progressive',
+    'want',
+  ];
 
   final Random _random = Random();
   final FlutterTts _tts = FlutterTts();
@@ -377,6 +384,46 @@ class _VerbQuizPageState extends State<VerbQuizPage>
     );
   }
 
+  Widget _buildCommonForm(VerbForm form, ThemeData theme) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            form.label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: form.japanese,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                TextSpan(
+                  text: '  ${form.romanji}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(form.french, style: const TextStyle(fontSize: 13)),
+        ],
+      ),
+    );
+  }
+
   Widget _buildFeedback(ThemeData theme) {
     final isCorrect = _selectedIndex == _correctIndex;
     final color = isCorrect ? Colors.green : Colors.red;
@@ -430,9 +477,14 @@ class _VerbQuizPageState extends State<VerbQuizPage>
           ),
           const SizedBox(height: 10),
           _buildCorrectAnswer(_choices[_correctIndex], theme),
-          if (_difficulty == VerbDifficulty.easy)
-            Text(_currentVerb.french, style: const TextStyle(fontSize: 16))
-          else ...[
+          if (_difficulty == VerbDifficulty.easy) ...[
+            Text(_currentVerb.french, style: const TextStyle(fontSize: 16)),
+            const Divider(height: 20),
+            Text('Formes courantes', style: theme.textTheme.labelLarge),
+            for (final key in _commonForms)
+              if (_currentVerb.forms[key] case final form?)
+                _buildCommonForm(form, theme),
+          ] else ...[
             if (_difficulty == VerbDifficulty.hard)
               Text(
                 '${_currentVerb.japanese}  ${_currentVerb.romanji} — ${_currentVerb.french}',

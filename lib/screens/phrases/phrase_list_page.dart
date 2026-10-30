@@ -82,10 +82,13 @@ class _PhraseListPageState extends State<PhraseListPage>
       _categoryKeys.putIfAbsent(category, () => GlobalKey());
     }
 
-    final phraseList = grouped.entries
-        .expand<Widget>(
-          (entry) => [
-            Text(
+    // Titres toujours construits (pour « Aller à un groupe »), cartes construites à la demande.
+    final slivers = <Widget>[
+      for (final (i, entry) in grouped.entries.indexed) ...[
+        SliverPadding(
+          padding: EdgeInsets.fromLTRB(16, i == 0 ? 8 : 0, 16, 12),
+          sliver: SliverToBoxAdapter(
+            child: Text(
               entry.key,
               key: _categoryKeys[entry.key],
               style: TextStyle(
@@ -94,12 +97,18 @@ class _PhraseListPageState extends State<PhraseListPage>
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
-            const SizedBox(height: 12),
-            ...entry.value.map((phrase) => _buildPhraseCard(context, phrase)),
-            const SizedBox(height: 20),
-          ],
-        )
-        .toList();
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+          sliver: SliverList.builder(
+            itemCount: entry.value.length,
+            itemBuilder: (context, index) =>
+                _buildPhraseCard(context, entry.value[index]),
+          ),
+        ),
+      ],
+    ];
 
     return SafeArea(
       bottom: true,
@@ -139,18 +148,16 @@ class _PhraseListPageState extends State<PhraseListPage>
             ),
           ),
           Expanded(
-            child: phraseList.isEmpty
+            child: grouped.isEmpty
                 ? const Center(
                     child: Text(
                       'Aucune phrase trouvée.',
                       style: TextStyle(color: Colors.grey),
                     ),
                   )
-                : ListView(
+                : CustomScrollView(
                     controller: _scrollController,
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                    cacheExtent: 100000,
-                    children: phraseList,
+                    slivers: slivers,
                   ),
           ),
         ],
@@ -172,19 +179,20 @@ class _PhraseListPageState extends State<PhraseListPage>
     );
   }
 
-  void _scrollToCategory(String category) {
-    // Wait for the popup menu's close animation so the key's context is stable.
-    Future.delayed(const Duration(milliseconds: 250), () {
-      if (!mounted) return;
-      final ctx = _categoryKeys[category]?.currentContext;
-      if (ctx != null && ctx.mounted) {
-        Scrollable.ensureVisible(
-          ctx,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          alignment: 0.0,
-        );
-      }
-    });
+  Future<void> _scrollToCategory(String category) async {
+    // Attend la fermeture du menu.
+    await Future.delayed(const Duration(milliseconds: 250));
+    final ctx = _categoryKeys[category]?.currentContext;
+    if (!mounted || ctx == null || !ctx.mounted) return;
+    await Scrollable.ensureVisible(
+      ctx,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    // La hauteur des cartes pas encore construites est estimée : on recale une fois arrivé.
+    final settled = _categoryKeys[category]?.currentContext;
+    if (mounted && settled != null && settled.mounted) {
+      await Scrollable.ensureVisible(settled);
+    }
   }
 }

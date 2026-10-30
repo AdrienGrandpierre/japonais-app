@@ -2,10 +2,16 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Scores (-5 à +5) persistés dans SharedPreferences, un dépôt par module.
 class PerformanceRepository {
-  static const _key = 'phrasePerformance';
+  const PerformanceRepository._(this._key);
 
-  static Future<Map<String, int>> load() async {
+  static const phrases = PerformanceRepository._('phrasePerformance');
+  static const reading = PerformanceRepository._('readingPerformance');
+
+  final String _key;
+
+  Future<Map<String, int>> load() async {
     final prefs = await SharedPreferences.getInstance();
     final stored = prefs.getString(_key);
     final result = <String, int>{};
@@ -29,7 +35,7 @@ class PerformanceRepository {
     return result;
   }
 
-  static Future<void> save(Map<String, int> performance) async {
+  Future<void> save(Map<String, int> performance) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_key, jsonEncode(performance));
   }

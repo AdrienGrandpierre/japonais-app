@@ -92,74 +92,71 @@ class _PhraseCardState extends State<PhraseCard> {
               if (widget.phrase.context.isNotEmpty ||
                   widget.phrase.dialog.isNotEmpty) ...[
                 const SizedBox(height: 12),
-                AnimatedCrossFade(
-                  firstChild: const Text(
-                    '...',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  secondChild: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.secondary.withValues(alpha: 0.08),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        if (widget.phrase.context.isNotEmpty) ...[
-                          Text(
-                            widget.phrase.context,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                          if (widget.phrase.dialog.isNotEmpty)
-                            const SizedBox(height: 12),
-                        ],
-                        if (widget.phrase.dialog.isNotEmpty) ...[
-                          Text(
-                            'Dialogue',
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          const SizedBox(height: 8),
-                          ...widget.phrase.dialog.map(
-                            (line) => Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    line.japanese,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    line.romanji,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    line.french,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                  crossFadeState: _expanded
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
+                AnimatedSize(
                   duration: const Duration(milliseconds: 200),
+                  alignment: Alignment.topCenter,
+                  child: !_expanded
+                      ? const Text('...', style: TextStyle(color: Colors.grey))
+                      : Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.secondary.withValues(alpha: 0.08),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              if (widget.phrase.context.isNotEmpty) ...[
+                                Text(
+                                  widget.phrase.context,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                if (widget.phrase.dialog.isNotEmpty)
+                                  const SizedBox(height: 12),
+                              ],
+                              if (widget.phrase.dialog.isNotEmpty) ...[
+                                Text(
+                                  'Dialogue',
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                ),
+                                const SizedBox(height: 8),
+                                ...widget.phrase.dialog.map(
+                                  (line) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Text(
+                                          line.japanese,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          line.romanji,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          line.french,
+                                          style: const TextStyle(fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
                 ),
               ],
             ],

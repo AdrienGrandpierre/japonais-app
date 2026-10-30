@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 enum AppSection {
   home('Accueil', Icons.home_outlined, Icons.home),
   phrases('Phrases', Icons.chat_bubble_outline, Icons.chat_bubble),
-  verbs('Verbes', Icons.translate_outlined, Icons.translate);
+  verbs('Verbes', Icons.translate_outlined, Icons.translate),
+  reading('Lecture', Icons.signpost_outlined, Icons.signpost);
 
   const AppSection(this.label, this.icon, this.selectedIcon);
 

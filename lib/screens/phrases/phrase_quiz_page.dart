@@ -285,9 +285,12 @@ class _PhraseQuizPageState extends State<PhraseQuizPage>
                                         const SizedBox(height: 4),
                                         Text(
                                           line.romanji,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.grey,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
                                           ),
                                         ),
                                         const SizedBox(height: 4),

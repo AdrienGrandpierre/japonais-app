@@ -1,0 +1,39 @@
+{
+  "Transport": [
+    { "japanese": "駅", "romanji": "eki", "french": "Gare", "context": "Panneaux de rue et plans : indique la gare la plus proche (ex : 東京駅, gare de Tokyo)." },
+    { "japanese": "出口", "romanji": "deguchi", "french": "Sortie", "context": "Gares, métro et bâtiments ; souvent sur fond jaune dans les gares." },
+    { "japanese": "入口", "romanji": "iriguchi", "french": "Entrée", "context": "Magasins, gares, parkings et musées." },
+    { "japanese": "地下鉄", "romanji": "chikatetsu", "french": "Métro", "context": "Escaliers d'accès au métro et panneaux de direction." },
+    { "japanese": "電車", "romanji": "densha", "french": "Train", "context": "Panneaux des gares et indications de direction." },
+    { "japanese": "バス", "romanji": "basu", "french": "Bus", "context": "Arrêts de bus et gares routières (バス乗り場)." },
+    { "japanese": "空港", "romanji": "kūkō", "french": "Aéroport", "context": "Panneaux routiers et trains vers l'aéroport (ex : 成田空港, aéroport de Narita)." }
+  ],
+  "Directions": [
+    { "japanese": "東", "romanji": "higashi", "french": "Est", "context": "Sorties de gare : 東口 (higashi-guchi) = sortie est." },
+    { "japanese": "西", "romanji": "nishi", "french": "Ouest", "context": "Sorties de gare : 西口 (nishi-guchi) = sortie ouest." },
+    { "japanese": "南", "romanji": "minami", "french": "Sud", "context": "Sorties de gare : 南口 (minami-guchi) = sortie sud." },
+    { "japanese": "北", "romanji": "kita", "french": "Nord", "context": "Sorties de gare : 北口 (kita-guchi) = sortie nord." }
+  ],
+  "Lieux": [
+    { "japanese": "トイレ", "romanji": "toire", "french": "Toilettes", "context": "Panneaux dans les gares, magasins et parcs." },
+    { "japanese": "男", "romanji": "otoko", "french": "Homme", "context": "Toilettes et bains (onsen), souvent en bleu." },
+    { "japanese": "女", "romanji": "onna", "french": "Femme", "context": "Toilettes et bains (onsen), souvent en rouge." },
+    { "japanese": "コンビニ", "romanji": "konbini", "french": "Supérette (24h/24)", "context": "Partout : 7-Eleven, Lawson, FamilyMart." },
+    { "japanese": "スーパー", "romanji": "sūpā", "french": "Supermarché", "context": "Enseignes de quartier, moins cher que les konbini." },
+    { "japanese": "交番", "romanji": "kōban", "french": "Poste de police", "context": "Petits postes près des gares et carrefours ; on peut y demander son chemin." },
+    { "japanese": "ホテル", "romanji": "hoteru", "french": "Hôtel", "context": "Enseignes d'hôtels." },
+    { "japanese": "神社", "romanji": "jinja", "french": "Sanctuaire shinto", "context": "Panneaux touristiques et plans ; reconnaissable à son portail torii." },
+    { "japanese": "寺", "romanji": "tera (-ji)", "french": "Temple bouddhiste", "context": "Noms de temples, lu « -ji » en fin de nom (ex : 金閣寺, Kinkaku-ji)." },
+    { "japanese": "公園", "romanji": "kōen", "french": "Parc", "context": "Entrées de parcs et plans de quartier." },
+    { "japanese": "温泉", "romanji": "onsen", "french": "Source chaude (bains)", "context": "Enseignes de bains, souvent avec le symbole ♨." }
+  ],
+  "Restaurant": [
+    { "japanese": "ラーメン", "romanji": "rāmen", "french": "Ramen", "context": "Enseignes et rideaux (noren) à l'entrée des restaurants." },
+    { "japanese": "寿司", "romanji": "sushi", "french": "Sushi", "context": "Enseignes et menus." },
+    { "japanese": "居酒屋", "romanji": "izakaya", "french": "Bar-restaurant japonais", "context": "Enseignes, souvent avec des lanternes rouges." },
+    { "japanese": "大盛", "romanji": "ōmori", "french": "Grande portion", "context": "Menus et boutons des machines à tickets (aussi écrit 大盛り)." },
+    { "japanese": "小盛", "romanji": "komori", "french": "Petite portion", "context": "Menus et boutons des machines à tickets (aussi écrit 小盛り)." },
+    { "japanese": "肉", "romanji": "niku", "french": "Viande", "context": "Menus, rayons des supermarchés (焼肉, yakiniku = viande grillée)." },
+    { "japanese": "魚", "romanji": "sakana", "french": "Poisson", "context": "Menus, marchés et rayons des supermarchés." }
+  ]
+}

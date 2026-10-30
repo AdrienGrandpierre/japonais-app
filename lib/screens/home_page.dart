@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../enums/app_section.dart';
 import '../models/phrase.dart';
+import '../models/reading_word.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
     super.key,
     required this.phrases,
     required this.performance,
+    required this.readingWords,
+    required this.readingPerformance,
     required this.onStartRevision,
     required this.onOpenSection,
   });
 
   final List<Phrase> phrases;
   final Map<String, int> performance;
+  final List<ReadingWord> readingWords;
+  final Map<String, int> readingPerformance;
   final VoidCallback onStartRevision;
   final ValueChanged<AppSection> onOpenSection;
 
@@ -21,22 +26,20 @@ class HomePage extends StatelessWidget {
     AppSection.home => '',
     AppSection.phrases => '${phrases.length} phrases · quiz et liste',
     AppSection.verbs => 'Conjugaisons · facile, normal, difficile',
+    AppSection.reading =>
+      '${readingWords.length} mots à reconnaître · facile, normal, liste',
   };
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    var mastered = 0;
-    var toReview = 0;
-    for (final phrase in phrases) {
-      final score = performance[phrase.key] ?? 0;
-      if (score >= 4) {
-        mastered++;
-      } else if (score <= -2) {
-        toReview++;
-      }
-    }
-    final learning = phrases.length - mastered - toReview;
+    final phraseScores = [
+      for (final phrase in phrases) performance[phrase.key] ?? 0,
+    ];
+    final readingScores = [
+      for (final word in readingWords) readingPerformance[word.key] ?? 0,
+    ];
+    final toReview = phraseScores.where((s) => s <= -2).length;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Hanasō')),
@@ -71,41 +74,11 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 20),
           Text('Progression des phrases', style: theme.textTheme.titleMedium),
           const SizedBox(height: 8),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  LinearProgressIndicator(
-                    value: phrases.isEmpty ? 0 : mastered / phrases.length,
-                    minHeight: 8,
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.green,
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      _StatTile(
-                        label: 'Maîtrisées',
-                        count: mastered,
-                        color: Colors.green,
-                      ),
-                      _StatTile(
-                        label: 'En cours',
-                        count: learning,
-                        color: Colors.blueGrey,
-                      ),
-                      _StatTile(
-                        label: 'À revoir',
-                        count: toReview,
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          _ProgressCard(scores: phraseScores, masteredLabel: 'Maîtrisées'),
+          const SizedBox(height: 20),
+          Text('Progression lecture', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          _ProgressCard(scores: readingScores, masteredLabel: 'Maîtrisés'),
           const SizedBox(height: 20),
           Text('Modules', style: theme.textTheme.titleMedium),
           const SizedBox(height: 8),
@@ -124,6 +97,57 @@ class HomePage extends StatelessWidget {
                 ),
               ),
         ],
+      ),
+    );
+  }
+}
+
+class _ProgressCard extends StatelessWidget {
+  const _ProgressCard({required this.scores, required this.masteredLabel});
+
+  final List<int> scores;
+  final String masteredLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    // Maîtrisé = 4 réussites d'affilée, à revoir = 2 ratés d'affilée.
+    final mastered = scores.where((s) => s >= 4).length;
+    final toReview = scores.where((s) => s <= -2).length;
+    final learning = scores.length - mastered - toReview;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            LinearProgressIndicator(
+              value: scores.isEmpty ? 0 : mastered / scores.length,
+              minHeight: 8,
+              borderRadius: BorderRadius.circular(4),
+              color: Colors.green,
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                _StatTile(
+                  label: masteredLabel,
+                  count: mastered,
+                  color: Colors.green,
+                ),
+                _StatTile(
+                  label: 'En cours',
+                  count: learning,
+                  color: Colors.blueGrey,
+                ),
+                _StatTile(
+                  label: 'À revoir',
+                  count: toReview,
+                  color: Colors.red,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

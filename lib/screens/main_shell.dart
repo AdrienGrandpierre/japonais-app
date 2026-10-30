@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 
 import '../data/performance_repository.dart';
 import '../data/phrase_repository.dart';
+import '../data/reading_repository.dart';
 import '../enums/app_section.dart';
 import '../models/phrase.dart';
+import '../models/reading_word.dart';
 import 'home_page.dart';
 import 'phrases/phrases_section.dart';
+import 'reading/reading_section.dart';
 import 'verbs/verbs_section.dart';
 
 /// Racine de l'app : barre de navigation en bas + un écran par module.
-/// Charge les phrases et les scores une seule fois et les partage.
+/// Charge les phrases, les mots de lecture et les scores une seule fois et les partage.
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
 
@@ -22,6 +25,8 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   final List<Phrase> _phrases = [];
   final Map<String, int> _performance = {};
+  final List<ReadingWord> _readingWords = [];
+  final Map<String, int> _readingPerformance = {};
   bool _loading = true;
   AppSection _section = AppSection.home;
   int _revisionRequest = 0;
@@ -34,35 +39,51 @@ class _MainShellState extends State<MainShell> {
 
   Future<void> _load() async {
     final phrases = await PhraseRepository.loadPhrases();
-    final performance = await PerformanceRepository.load();
+    final performance = await PerformanceRepository.phrases.load();
     for (final phrase in phrases) {
       performance.putIfAbsent(phrase.key, () => 0);
+    }
+    final readingWords = await ReadingRepository.loadWords();
+    final readingPerformance = await PerformanceRepository.reading.load();
+    for (final word in readingWords) {
+      readingPerformance.putIfAbsent(word.key, () => 0);
     }
     setState(() {
       _phrases.addAll(phrases);
       _performance.addAll(performance);
+      _readingWords.addAll(readingWords);
+      _readingPerformance.addAll(readingPerformance);
       _loading = false;
     });
   }
 
   // Le score est une série : +N = N réussites d'affilée, -N = N ratés d'affilée.
-  void _recordResult(String key, bool correct) {
-    final score = _performance[key] ?? 0;
+  void _recordResult(
+    PerformanceRepository repository,
+    Map<String, int> scores,
+    String key,
+    bool correct,
+  ) {
+    final score = scores[key] ?? 0;
     setState(() {
-      _performance[key] = correct
+      scores[key] = correct
           ? (max(score, 0) + 1).clamp(-5, 5)
           : (min(score, 0) - 1).clamp(-5, 5);
     });
-    PerformanceRepository.save(_performance);
+    repository.save(scores);
   }
 
-  void _resetPerformance() {
+  void _resetScores(
+    PerformanceRepository repository,
+    Map<String, int> scores,
+    Iterable<String> keys,
+  ) {
     setState(() {
-      _performance
+      scores
         ..clear()
-        ..addEntries(_phrases.map((p) => MapEntry(p.key, 0)));
+        ..addEntries(keys.map((k) => MapEntry(k, 0)));
     });
-    PerformanceRepository.save(_performance);
+    repository.save(scores);
   }
 
   void _startRevision() {
@@ -76,17 +97,43 @@ class _MainShellState extends State<MainShell> {
     AppSection.home => HomePage(
       phrases: _phrases,
       performance: _performance,
+      readingWords: _readingWords,
+      readingPerformance: _readingPerformance,
       onStartRevision: _startRevision,
       onOpenSection: (s) => setState(() => _section = s),
     ),
     AppSection.phrases => PhrasesSection(
       phrases: _phrases,
       performance: _performance,
-      onResult: _recordResult,
-      onReset: _resetPerformance,
+      onResult: (key, correct) => _recordResult(
+        PerformanceRepository.phrases,
+        _performance,
+        key,
+        correct,
+      ),
+      onReset: () => _resetScores(
+        PerformanceRepository.phrases,
+        _performance,
+        _phrases.map((p) => p.key),
+      ),
       revisionRequest: _revisionRequest,
     ),
     AppSection.verbs => const VerbsSection(),
+    AppSection.reading => ReadingSection(
+      words: _readingWords,
+      performance: _readingPerformance,
+      onResult: (key, correct) => _recordResult(
+        PerformanceRepository.reading,
+        _readingPerformance,
+        key,
+        correct,
+      ),
+      onReset: () => _resetScores(
+        PerformanceRepository.reading,
+        _readingPerformance,
+        _readingWords.map((w) => w.key),
+      ),
+    ),
   };
 
   @override
